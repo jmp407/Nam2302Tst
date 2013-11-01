@@ -1,0 +1,1 @@
+cmd_Release/obj.target/am2302.node := flock ./Release/linker.lock g++ -shared -pthread -rdynamic  -Wl,-soname=am2302.node -o Release/obj.target/am2302.node -Wl,--start-group Release/obj.target/am2302/src/am2302.o -Wl,--end-group /usr/local/lib/libwiringPi.a
