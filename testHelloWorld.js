@@ -20,6 +20,6 @@ http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/plain'});
   console.log(DhObj," ",i);
   res.write(DhTxt);
-  res.end(DhObj);
+  res.end(JSON.stringify(DhObj));
 }).listen(8337, '10.0.0.4', Lcallback);
 function Lcallback(){console.log('Server running at http://10.0.0.4:8337/')}
