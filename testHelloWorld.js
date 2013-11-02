@@ -10,7 +10,7 @@ function myConditions()
 
  DhObj=am2302.read(7);
 //console.log(DhObj);
- DhTxt=JSON.stringify(DhObj)+" "+i;
+ DhTxt=JSON.stringify(DhObj)+" "+i+"\n";
 //console.log(DhTxt);
   //you can reset counter here
 //  if (i>200){clearInterval(MyCndInt)};
