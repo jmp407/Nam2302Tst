@@ -16,7 +16,7 @@ function myConditions()
 }
 http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/plain'});
-  console.log(DhObj,' ',i);
+  console.log(DhObj," ",i);
   res.end(DhTxt);
 }).listen(8337, '10.0.0.4', Lcallback);
 function Lcallback(){console.log('Server running at http://10.0.0.4:8337/')}
