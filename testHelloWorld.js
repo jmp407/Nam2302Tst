@@ -2,6 +2,8 @@ var http = require('http')
 var am2302 = require('am2302');
 var MyCndInt=setInterval(myConditions, 5000);
 var i=1;
+var DhObj=null;
+var DhTxt="humidity and temperature"
 function myConditions()
 {
   //this will repeat every 5 seconds
@@ -17,6 +19,7 @@ function myConditions()
 http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/plain'});
   console.log(DhObj," ",i);
-  res.end(DhTxt);
+  res.write(DhTxt);
+  res.end(DhObj);
 }).listen(8337, '10.0.0.4', Lcallback);
 function Lcallback(){console.log('Server running at http://10.0.0.4:8337/')}
