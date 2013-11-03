@@ -7,13 +7,28 @@ var t=70;
 var DhObj=null;
 var DhTxt="humidity and temperature"
 var txHum;
+var txHumAvg1m;
+var txHumAvg5m;
+var txHumAvg15m;
 var txTemp;
+var txTempAvg1m;
+var txTempAvg5m;
+var txTempAvg15m;
+var Hum;
+var HumAvg1m;
+var HumAvg5m;
+var HumAvg15m;
+var Temp;
+var TempAvg1m;
+var TempAvg5m;
+var TempAvg15m;
 function myConditions()
 {
   //this will repeat every 5 seconds
 
  DhObj=am2302.read(7);
  h=DhObj.h;//.toPrecision(4);
+ 
  t=32+1.8*DhObj.t;//.toPrecision(4)*9/5+32;
  txHum="The humidity is: "+ h.toPrecision(4)+"\n";
  txTemp="The temperature is: " + t.toPrecision(4)+"\n";
