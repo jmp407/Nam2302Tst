@@ -60,7 +60,8 @@ console.log(DhTxt);
 http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/plain'});
   res.sendDate;
-  console.log(DhObj," ",i);
+  //console.log(DhObj," ",i);
+  DhTxt = DhTxt + "\n";
   res.write(DhTxt);
   res.write(txHum);
   res.write(txHumAvg1m);
