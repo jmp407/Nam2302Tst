@@ -6,6 +6,8 @@ var h=50;
 var t=70;
 var DhObj=null;
 var DhTxt="humidity and temperature"
+var txHum;
+var txTemp;
 function myConditions()
 {
   //this will repeat every 5 seconds
@@ -24,6 +26,7 @@ function myConditions()
 }
 http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/plain'});
+  response.sendDate;
   console.log(DhObj," ",i);
   res.write(DhTxt);
   res.write(txHum);
