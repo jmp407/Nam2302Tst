@@ -43,7 +43,7 @@ function myConditions()
  txHum="The humidity is: "+ h.toPrecision(4)+"\n";
  txTemp="The temperature is: " + t.toPrecision(4)+"\n";
 //console.log(DhObj);
- DhTxt=JSON.stringify(DhObj)+" "+i+"\n";
+ DhTxt=JSON.stringify(DhObj)+" "+i;
 console.log(DhTxt);
     txHumAvg1m = "One  minute humidity average: " + HumAvg1m.toPrecision(4)+"\n";
     txHumAvg5m = "Five minute humidity average: " + HumAvg5m.toPrecision(4)+"\n";
