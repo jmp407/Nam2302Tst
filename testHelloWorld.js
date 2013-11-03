@@ -26,7 +26,7 @@ function myConditions()
 }
 http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/plain'});
-  response.sendDate;
+  res.sendDate;
   console.log(DhObj," ",i);
   res.write(DhTxt);
   res.write(txHum);
