@@ -45,13 +45,13 @@ function myConditions()
 //console.log(DhObj);
  DhTxt=JSON.stringify(DhObj)+" "+i+"\n";
 //console.log(DhTxt);
-    txHumAvg1m = "One  minute humidity average: " + HumAvg1m.toPrecision(4);
-    txHumAvg5m = "Five minute humidity average: " + HumAvg5m.toPrecision(4);
-   txHumAvg15m = "Fifteen min humidity average: " + HumAvg15m.toPrecision(4);
+    txHumAvg1m = "One  minute humidity average: " + HumAvg1m.toPrecision(4)+"\n";
+    txHumAvg5m = "Five minute humidity average: " + HumAvg5m.toPrecision(4)+"\n";
+   txHumAvg15m = "Fifteen min humidity average: " + HumAvg15m.toPrecision(4)+"\n";
  
-    txTempAvg1m = "One  minute temperature average: " + TempAvg1m.toPrecision(4);
-    txTempAvg5m = "Five minute temperature average: " + TempAvg5m.toPrecision(4);
-    txTempAvg15m ="Fifteen min temperature average: " + TempAvg15m.toPrecision(4);
+    txTempAvg1m = "One  minute temperature average: " + TempAvg1m.toPrecision(4)+"\n";
+    txTempAvg5m = "Five minute temperature average: " + TempAvg5m.toPrecision(4)+"\n";
+    txTempAvg15m ="Fifteen min temperature average: " + TempAvg15m.toPrecision(4)+"\n";
 
   //you can reset counter here
 //  if (i>200){clearInterval(MyCndInt)};
