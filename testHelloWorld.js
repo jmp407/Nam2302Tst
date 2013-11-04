@@ -40,18 +40,18 @@ function myConditions()
  TempAvg1m = TempAvg1m + (t - TempAvg1m)/20;
  TempAvg5m = TempAvg5m + (t - TempAvg5m)/100;
  TempAvg15m = TempAvg15m + (t - TempAvg15m)/300;
- txHum="The humidity is: "+ h.toPrecision(4)+"\n";
- txTemp="The temperature is: " + t.toPrecision(4)+"\n";
+ txHum="The humidity is: "+ h.toPrecision(4)+"</br>";
+ txTemp="The temperature is: " + t.toPrecision(4)+"</br>";
 //console.log(DhObj);
  DhTxt=JSON.stringify(DhObj)+" "+i;
 console.log(DhTxt);
-    txHumAvg1m = "One  minute humidity average: " + HumAvg1m.toPrecision(4)+"\n";
-    txHumAvg5m = "Five minute humidity average: " + HumAvg5m.toPrecision(4)+"\n";
-   txHumAvg15m = "Fifteen min humidity average: " + HumAvg15m.toPrecision(4)+"\n";
+    txHumAvg1m = "One  minute humidity average: " + HumAvg1m.toPrecision(4)+"</br>";
+    txHumAvg5m = "Five minute humidity average: " + HumAvg5m.toPrecision(4)+"</br>";
+   txHumAvg15m = "Fifteen min humidity average: " + HumAvg15m.toPrecision(4)+"</br>";
  
-    txTempAvg1m = "One  minute temperature average: " + TempAvg1m.toPrecision(4)+"\n";
-    txTempAvg5m = "Five minute temperature average: " + TempAvg5m.toPrecision(4)+"\n";
-    txTempAvg15m ="Fifteen min temperature average: " + TempAvg15m.toPrecision(4)+"\n";
+    txTempAvg1m = "One  minute temperature average: " + TempAvg1m.toPrecision(4)+"</br>";
+    txTempAvg5m = "Five minute temperature average: " + TempAvg5m.toPrecision(4)+"</br>";
+    txTempAvg15m ="Fifteen min temperature average: " + TempAvg15m.toPrecision(4)+"</br>";
 
   //you can reset counter here
 //  if (i>200){clearInterval(MyCndInt)};
