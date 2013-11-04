@@ -1,7 +1,7 @@
 //  A node.js script to read the humidity and temperature
 //  Need to add a calc to change Rh and temp to dew point or lbmH2O/lbmDryAir.
 //  Need to call PID script
-//  Need to add Date/Time to h an t
+//  Added Date/Time to h and t Read
 
 var http = require('http')
 var am2302 = require('am2302');
