@@ -63,8 +63,8 @@ http.createServer(function (req, res) {
 
   res.write(Reld);
   //console.log(DhObj," ",i);
-  DhTxt = DhTxt + "\n";
-  res.write(DhTxt + </br>);
+  DhTxt = DhTxt + "</br>";
+  res.write(DhTxt);
   res.write(txHum);
   res.write(txHumAvg1m);
   res.write(txHumAvg5m);
