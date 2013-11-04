@@ -35,6 +35,11 @@ function myConditions()
   //this will repeat every 5 seconds
 
  DhObj=am2302.read(7);
+ var d = new Date();
+    var ms = d.getMilliseconds();
+ //   console.log(d,ms);
+    var dtime = d + ms;
+    
  h=DhObj.h;//.toPrecision(4);
  t=32+1.8*DhObj.t;//.toPrecision(4)*9/5+32;
  Hum = h;
@@ -68,7 +73,7 @@ http.createServer(function (req, res) {
 
   res.write(Reld);
   //console.log(DhObj," ",i);
-  DhTxt = DhTxt + "</br>";
+  DhTxt = dtime + "</br>";
   res.write(DhTxt);
   res.write(txHum);
   res.write(txHumAvg1m);
@@ -78,6 +83,6 @@ http.createServer(function (req, res) {
   res.write(txTempAvg1m);
   res.write(txTempAvg5m);
   res.write(txTempAvg15m);
-  res.end(JSON.stringify(DhObj));
+//  res.end(JSON.stringify(DhObj));
 }).listen(8337, '10.0.0.4', Lcallback);
 function Lcallback(){console.log('Server running at http://10.0.0.4:8337/')}
