@@ -38,7 +38,7 @@ function myConditions()
  var d = new Date();
     var ms = d.getMilliseconds();
  //   console.log(d,ms);
-    var dtime = d + ms;
+     dtime = d + ms;
     
  h=DhObj.h;//.toPrecision(4);
  t=32+1.8*DhObj.t;//.toPrecision(4)*9/5+32;
