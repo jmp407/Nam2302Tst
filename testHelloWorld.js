@@ -59,7 +59,9 @@ console.log(DhTxt);
 }
 http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.sendDate;
+  var Reld ="<script> setTimeout(function(){location.reload()}, 5000); </script>"
+
+  res.write(Reld);
   //console.log(DhObj," ",i);
   DhTxt = DhTxt + "\n";
   res.write(DhTxt);
