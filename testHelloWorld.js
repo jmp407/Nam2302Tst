@@ -58,7 +58,7 @@ console.log(DhTxt);
   i++ ;
 }
 http.createServer(function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.writeHead(200, {'Content-Type': 'text/html'});
   var Reld ="<script> setTimeout(function(){location.reload()}, 5000); </script>"
 
   res.write(Reld);
