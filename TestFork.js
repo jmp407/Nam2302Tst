@@ -1,4 +1,8 @@
 var cp = require('child_process');
+var MyCndInt=setInterval(myConditions, 5000);
+function myConditions()
+{
+  //this will repeat every 5 seconds
 // Fork the process to read the meter
 var n = cp.fork(__dirname + '/sub.js');
 // find the process and print it's ID
@@ -11,3 +15,4 @@ n.on('message', function(m) {
 });
 // somewhere along the way, send the child a message.
 n.send({ hello: 'world' });
+};
