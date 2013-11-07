@@ -4,6 +4,7 @@
 //  Added Date/Time to h and t Read
 
 var http = require('http')
+var cp = require('child_process');
 //var am2302 = require('am2302');
 var MyCndInt=setInterval(myConditions, 5000);
 //var DhObj=am2302.read(7);
