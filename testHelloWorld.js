@@ -8,7 +8,7 @@ var cp = require('child_process');
 //var am2302 = require('am2302');
 var MyCndInt=setInterval(myConditions, 5000);
 //var DhObj=am2302.read(7);
-var DhObj={ h: 58.20000076293945, t: 23.799999237060547 };
+var DhObj={ h: 58.233, t: 23.80067 };
 var i=1;
 var h=DhObj.h;//.toPrecision(4);
 var t=32+1.8*DhObj.t;//.toPrecision(4)*9/5+32;
@@ -42,7 +42,7 @@ console.log('PID ' + n.pid);
 // get the temperature and humidity via a child message
 // and then kill the process
 n.on('message', function(m) {
-  console.log('PARENT got message:', m);
+//  console.log('PARENT got message:', m);
   DhObj = m;
   n.kill('SIGHUP');
 });
@@ -66,7 +66,7 @@ n.on('message', function(m) {
  txTemp="The temperature is: " + t.toPrecision(4)+"</br>";
 //console.log(DhObj);
  DhTxt=JSON.stringify(DhObj)+" "+i;
-console.log(DhTxt);
+//console.log(DhTxt);
     txHumAvg1m = "One  minute humidity average: " + HumAvg1m.toPrecision(4)+"</br>";
     txHumAvg5m = "Five minute humidity average: " + HumAvg5m.toPrecision(4)+"</br>";
    txHumAvg15m = "Fifteen min humidity average: " + HumAvg15m.toPrecision(4)+"</br>";
