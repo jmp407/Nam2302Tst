@@ -10,7 +10,7 @@ console.log('PID ' + n.pid);
 // get the temperature and humidity via a child message
 // and then kill the process
 n.on('message', function(m) {
-  console.log('PARENT got message:', m);
+//  console.log('PARENT got message:', m);
   n.kill('SIGHUP');
 });
 // somewhere along the way, send the child a message.
