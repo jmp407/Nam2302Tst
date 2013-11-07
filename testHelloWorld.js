@@ -4,9 +4,9 @@
 //  Added Date/Time to h and t Read
 
 var http = require('http')
-var am2302 = require('am2302');
+//var am2302 = require('am2302');
 var MyCndInt=setInterval(myConditions, 5000);
-var DhObj=am2302.read(7);
+//var DhObj=am2302.read(7);
 var i=1;
 var h=DhObj.h;//.toPrecision(4);
 var t=32+1.8*DhObj.t;//.toPrecision(4)*9/5+32;
@@ -34,7 +34,7 @@ function myConditions()
 {
   //this will repeat every 5 seconds
 
- DhObj=am2302.read(7);
+// DhObj=am2302.read(7);
  var d = new Date();
     var ms = d.getMilliseconds();
  //   console.log(d,ms);
