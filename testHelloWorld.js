@@ -51,6 +51,7 @@ n.on('message', function(m) {
     var ms = d.getMilliseconds();
  //   console.log(d,ms);
      dtime = d + ms;
+ console.log(dtime);
     
  h=DhObj.h;//.toPrecision(4);
  t=32+1.8*DhObj.t;//.toPrecision(4)*9/5+32;
