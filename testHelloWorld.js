@@ -43,8 +43,8 @@ console.log('PID ' + n.pid);
 // and then kill the process
 n.on('message', function(m) {
   console.log('PARENT got message:', m);
+  DhObj = m;
   n.kill('SIGHUP');
-  var DhObj = m;
 });
 // DhObj=am2302.read(7);
  var d = new Date();
