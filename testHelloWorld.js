@@ -3,12 +3,12 @@
 //  Need to call PID script
 //  Added Date/Time to h and t Read
 
-var http = require('http')
+var http = require('http');
 var cp = require('child_process');
 //var am2302 = require('am2302');
 var MyCndInt=setInterval(myConditions, 5000);
-//var DhObj=am2302.read(7);
-var DhObj={ h: 58.233, t: 23.80067 };
+var DhObj=am2302.read(7);
+//var DhObj={ h: 58.233, t: 23.80067 };
 var i=1;
 var h=DhObj.h;//.toPrecision(4);
 var t=32+1.8*DhObj.t;//.toPrecision(4)*9/5+32;
@@ -38,7 +38,7 @@ function myConditions()
 // Fork the process to read the meter
 var n = cp.fork(__dirname + '/sub.js');
 // find the process and print it's ID
-console.log('PID ' + n.pid);
+//console.log('PID ' + n.pid);
 // get the temperature and humidity via a child message
 // and then kill the process
 n.on('message', function(m) {
@@ -77,7 +77,7 @@ n.on('message', function(m) {
     txTempAvg15m ="Fifteen min temperature average: " + TempAvg15m.toPrecision(4)+"</br>";
 
   //you can reset counter here
-  if (i>2000){clearInterval(MyCndInt)}; //Write a routine to kill and respawn the process after x loops
+  if (i>4000){clearInterval(MyCndInt)}; //Write a routine to kill and respawn the process after x loops
   i++ ;
 }
 http.createServer(function (req, res) {
