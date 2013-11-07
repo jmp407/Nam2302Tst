@@ -64,7 +64,7 @@ console.log(DhTxt);
     txTempAvg15m ="Fifteen min temperature average: " + TempAvg15m.toPrecision(4)+"</br>";
 
   //you can reset counter here
-  if (i>200){clearInterval(MyCndInt)}; //Write a routine to kill and respawn the process after x loops
+  if (i>3){clearInterval(MyCndInt)}; //Write a routine to kill and respawn the process after x loops
   i++ ;
 }
 http.createServer(function (req, res) {
