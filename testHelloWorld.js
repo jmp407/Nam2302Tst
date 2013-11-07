@@ -5,7 +5,7 @@
 
 var http = require('http');
 var cp = require('child_process');
-//var am2302 = require('am2302');
+var am2302 = require('am2302');
 var MyCndInt=setInterval(myConditions, 5000);
 var DhObj=am2302.read(7);
 //var DhObj={ h: 58.233, t: 23.80067 };
