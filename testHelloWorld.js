@@ -33,7 +33,17 @@ var txTempAvg15m;
 function myConditions()
 {
   //this will repeat every 5 seconds
-
+// Fork the process to read the meter
+var n = cp.fork(__dirname + '/sub.js');
+// find the process and print it's ID
+console.log('PID ' + n.pid);
+// get the temperature and humidity via a child message
+// and then kill the process
+n.on('message', function(m) {
+  console.log('PARENT got message:', m);
+  n.kill('SIGHUP');
+  var DhObj = m;
+});
 // DhObj=am2302.read(7);
  var d = new Date();
     var ms = d.getMilliseconds();
@@ -64,7 +74,7 @@ console.log(DhTxt);
     txTempAvg15m ="Fifteen min temperature average: " + TempAvg15m.toPrecision(4)+"</br>";
 
   //you can reset counter here
-  if (i>3){clearInterval(MyCndInt)}; //Write a routine to kill and respawn the process after x loops
+  if (i>2000){clearInterval(MyCndInt)}; //Write a routine to kill and respawn the process after x loops
   i++ ;
 }
 http.createServer(function (req, res) {
