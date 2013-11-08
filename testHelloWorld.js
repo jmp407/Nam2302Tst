@@ -6,7 +6,8 @@
 var http = require('http');
 var cp = require('child_process');
 var am2302 = require('am2302');
-var MyCndInt=setInterval(myConditions, 6000);
+var tdel = 6000
+var MyCndInt=setInterval(myConditions, tdel);
 var DhObj=am2302.read(7);
 //var DhObj={ h: 58.233, t: 23.80067 };
 var i=1;
@@ -34,7 +35,7 @@ var txTempAvg5m;
 var txTempAvg15m;
 function myConditions()
 {
-  //this will repeat every 5 seconds
+  //this will repeat every tdel milliseconds
 // Fork the process to read the meter
 var n = cp.fork(__dirname + '/sub.js');
 // find the process and print it's ID
@@ -57,13 +58,13 @@ n.on('message', function(m) {
  h=DhObj.h;//.toPrecision(4);
  t=32+1.8*DhObj.t;//.toPrecision(4)*9/5+32;
  Hum = h;
- HumAvg1m = HumAvg1m + (h - HumAvg1m)/20;
- HumAvg5m = HumAvg5m + (h - HumAvg5m)/100;
- HumAvg15m = HumAvg15m + (h - HumAvg15m)/300;
+ HumAvg1m = HumAvg1m + (h - HumAvg1m)/(60000/tdel);
+ HumAvg5m = HumAvg5m + (h - HumAvg5m)/(5*60000/tdel);
+ HumAvg15m = HumAvg15m + (h - HumAvg15m)/(15*60000/tdel);
  Temp = t;
- TempAvg1m = TempAvg1m + (t - TempAvg1m)/20;
- TempAvg5m = TempAvg5m + (t - TempAvg5m)/100;
- TempAvg15m = TempAvg15m + (t - TempAvg15m)/300;
+ TempAvg1m = TempAvg1m + (t - TempAvg1m)/(60000/tdel);
+ TempAvg5m = TempAvg5m + (t - TempAvg5m)/(5*60000/tdel;
+ TempAvg15m = TempAvg15m + (t - TempAvg15m)/(15*60000/tdel);
  txHum="The humidity is: "+ h.toPrecision(4)+"</br>";
  txTemp="The temperature is: " + t.toPrecision(4)+"</br>";
 //console.log(DhObj);
