@@ -6,7 +6,7 @@
 var http = require('http');
 var cp = require('child_process');
 var am2302 = require('am2302');
-var MyCndInt=setInterval(myConditions, 5000);
+var MyCndInt=setInterval(myConditions, 6000);
 var DhObj=am2302.read(7);
 //var DhObj={ h: 58.233, t: 23.80067 };
 var i=1;
@@ -44,6 +44,7 @@ var n = cp.fork(__dirname + '/sub.js');
 n.on('message', function(m) {
 //  console.log('PARENT got message:', m);
   DhObj = m;
+  console.log(m);
   n.kill('SIGHUP');
 });
 // DhObj=am2302.read(7);
