@@ -63,7 +63,7 @@ n.on('message', function(m) {
  HumAvg15m = HumAvg15m + (h - HumAvg15m)/(15*60000/tdel);
  Temp = t;
  TempAvg1m = TempAvg1m + (t - TempAvg1m)/(60000/tdel);
- TempAvg5m = TempAvg5m + (t - TempAvg5m)/(5*60000/tdel;
+ TempAvg5m = TempAvg5m + (t - TempAvg5m)/(5*60000/tdel);
  TempAvg15m = TempAvg15m + (t - TempAvg15m)/(15*60000/tdel);
  txHum="The humidity is: "+ h.toPrecision(4)+"</br>";
  txTemp="The temperature is: " + t.toPrecision(4)+"</br>";
