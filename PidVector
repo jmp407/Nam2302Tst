@@ -1,1 +1,21 @@
 // The PID part
+    var AvgTiming=new Array (1,5,15);// 1, 5 and 15min averages
+    var AvgHv=new Array (1,5,15);// 1, 5 and 15 min humidity averages
+    var AvgTv=new Array (1,5,15);// 1, 5 and 15 min temperature averages.
+    var PKs= new Array (1,1);//proportional gains
+    var IKs= new Array (0,0);//integral gains
+    var DKs= new Array (0,0);//derivative gains
+    var IaDtimeStp = new Array (1,1);//Time steps for I and D for humidity and temperature
+    var SetPt = new Array (50,75);// set points hsp and tsp
+    // errors - Ph,Pt,
+    // errors - Ih,It
+    // errors - Dh and Dt
+    
+var Vector=new Array (1,2,3,4,5);
+console.log(Vector);
+var Ks=new Array(2,3,4,5,6);
+for ( i in Vector)
+{
+    Vector[i]=Ks[i]*Vector[i];
+    }
+console.log(Vector);
