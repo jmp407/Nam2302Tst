@@ -1,4 +1,4 @@
-//Try to get it from Coder
+//
 //Single PID
 //Init
 var ReadTime= new Date(),LastRdTime =ReadTime, DelTime=ReadTime-LastRdTime;
