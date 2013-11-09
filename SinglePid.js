@@ -70,6 +70,9 @@ n.on('message', function(m) {
  h=DhObj.h;//.toPrecision(4);
  t=32+1.8*DhObj.t;//.toPrecision(4)*9/5+32;
  FeedBack = t;
+ LastRdTime =ReadTime;
+ DelTime=ReadTime-LastRdTime;
+ 
  PID;//how do I call this function
  Hum = h;
  HumAvg1m = HumAvg1m + (h - HumAvg1m)/(60000/tdel);
