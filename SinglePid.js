@@ -94,6 +94,14 @@ n.on('message', function(m) {
   //you can reset counter here
   if (i>4000){clearInterval(MyCndInt)}; //Write a routine to kill and respawn the process after x loops
   i++ ;
+console.log(ReadTime);
+console.log(LastRdTime);
+console.log(DelTime);
+console.log(FeedBack);
+console.log(PidErr);
+console.log(IntErr);
+console.log(DerErr);
+
 }    
 //function for PID calc
 function PID () {
@@ -103,14 +111,6 @@ function PID () {
 //may want to take a running avg of DerErr
     DerErr = (PidErr-LstPidErr)/DelTime;
 }
-console.log(ReadTime);
-console.log(LastRdTime);
-console.log(DelTime);
-console.log(FeedBack);
-console.log(PidErr);
-console.log(IntErr);
-console.log(DerErr);
-
 /*
 document.getElementById("ReadTime").innerHTML=ReadTime;
 document.getElementById("LastRdTime").innerHTML=LastRdTime;
