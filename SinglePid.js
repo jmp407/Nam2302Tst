@@ -111,7 +111,7 @@ console.log(DerErr);
 function PID () {
     LstPidErr = PidErr;
     PidErr =SetPoint - FeedBack;
-    IntErr = IntErr +(PidErr+LstPidErr)*DelTime/IntTimeStep;// one to start
+    IntErr = IntErr +((PidErr+LstPidErr)/2)*DelTime/IntTimeStep;// one to start
 //may want to take a running avg of DerErr
     DerErr = (PidErr-LstPidErr)/DelTime;
 }
