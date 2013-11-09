@@ -2,12 +2,18 @@
 //Single PID
 //Init
 var ReadTime= new Date(),LastRdTime =ReadTime, DelTime=ReadTime-LastRdTime;
-var IntTimeStep = 1;//is this 1 minute or millisecond?
+
+var tdel = 6000
+var IntTimeStep = tdel;//is this 1 minute or millisecond?
 var SetPoint=75, FeedBack=SetPoint-1;//Temperature in F
 //Start at zero
 var LstPidErr=0, PidErr=SetPoint-FeedBack;//
 var IntErr=PidErr;//Int Err is averaged and times the delta time
 var DerErr=PidErr;//use the 5 min avg for Der
+
+
+var MyCndInt=setInterval(myConditions, tdel);
+
 //function for PID calc?
 function PID () {
     LstPidErr = PidErr;
