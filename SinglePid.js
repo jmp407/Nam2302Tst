@@ -13,8 +13,9 @@ var DerErr=PidErr;//use the 5 min avg for Der
 
 
 var MyCndInt=setInterval(myConditions, tdel);
-
-//function for PID calc?
+function myConditions () {
+    
+//function for PID calc
 function PID () {
     LstPidErr = PidErr;
     PidErr =SetPoint - FeedBack;
@@ -29,6 +30,7 @@ console.log(FeedBack);
 console.log(PidErr);
 console.log(IntErr);
 console.log(DerErr);
+};
 /*
 document.getElementById("ReadTime").innerHTML=ReadTime;
 document.getElementById("LastRdTime").innerHTML=LastRdTime;
