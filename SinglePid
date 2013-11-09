@@ -16,6 +16,13 @@ function PID () {
 //may want to take a running avg of DerErr
     DerErr = (PidErr-LstPidErr)/DelTime;
 }
+console.log(ReadTime);
+console.log(LastRdTime);
+console.log(DelTime);
+console.log(FeedBack);
+console.log(PidErr);
+console.log(IntErr);
+console.log(DerErr);
 /*
 document.getElementById("ReadTime").innerHTML=ReadTime;
 document.getElementById("LastRdTime").innerHTML=LastRdTime;
