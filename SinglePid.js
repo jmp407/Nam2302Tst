@@ -111,14 +111,20 @@ console.log(IntErr);
 console.log(DerErr);
 
 }    
-//function for PID calc
+// function for PID calc
 function PID () {
     LstPidErr = PidErr;
-//    PidErr =SetPoint - FeedBack;
+//  PidErr =SetPoint - FeedBack;
     PidErr = StPtAvg - FdBkAvg;
+    if PidErr > 1 then PidErr = 1;
+    if PidErr < -1 then PidErr = -1;
     IntErr = IntErr +((PidErr+LstPidErr)/2)*DelTime/IntTimeStep;// one to start
-//may want to take a running avg of DerErr
+    if IntErr > 1 then IntErr = 1;
+    if IntErr < -1 then IntErr = -1;
+// may want to take a running avg of DerErr
     DerErr = (PidErr-LstPidErr)/DelTime;
+    if DerErr > 1 then DerErr = 1;
+    if DerErr < -1 then DerErr = -1;
 }
 /*
 document.getElementById("ReadTime").innerHTML=ReadTime;
