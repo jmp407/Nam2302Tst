@@ -48,11 +48,10 @@ var txTempAvg5m;
 var txTempAvg15m;
 function myConditions()
 {
+  ReadTime= new Date();
   //this will repeat every tdel milliseconds
 // Fork the process to read the meter
 var n = cp.fork(__dirname + '/sub.js');
-// find the process and print it's ID
-//console.log('PID ' + n.pid);
 // get the temperature and humidity via a child message
 // and then kill the process
 n.on('message', function(m) {
@@ -70,6 +69,7 @@ n.on('message', function(m) {
     
  h=DhObj.h;//.toPrecision(4);
  t=32+1.8*DhObj.t;//.toPrecision(4)*9/5+32;
+ FeedBack = t;
  Hum = h;
  HumAvg1m = HumAvg1m + (h - HumAvg1m)/(60000/tdel);
  HumAvg5m = HumAvg5m + (h - HumAvg5m)/(5*60000/tdel);
