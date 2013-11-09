@@ -5,7 +5,8 @@ var ReadTime= new Date(),LastRdTime =ReadTime, DelTime=ReadTime-LastRdTime;
 
 var tdel = 6000
 var IntTimeStep = tdel;//is this 1 minute or millisecond?
-var SetPoint=71.1, FeedBack=71.1;//SetPoint-1;//Temperature in F
+var SetPoint=71.1, FeedBack=71.1, FdBkAvg=71.1;//SetPoint-1;//Temperature in F
+var StPtAvg=SetPoint;
 //Start at zero
 var LstPidErr=0, PidErr=SetPoint-FeedBack;//
 var IntErr=PidErr;//Int Err is averaged and times the delta time
@@ -19,7 +20,7 @@ var DerErr=PidErr;//use the 5 min avg for Der
 var http = require('http');
 var cp = require('child_process');
 var am2302 = require('am2302');
-var tdel = 6000
+var tdel = 6000;
 var MyCndInt=setInterval(myConditions, tdel);
 var DhObj=am2302.read(7);
 //var DhObj={ h: 58.233, t: 23.80067 };
@@ -72,6 +73,9 @@ n.on('message', function(m) {
  FeedBack = t;
  DelTime=ReadTime-LastRdTime;
  LastRdTime =ReadTime;
+ // 3 min running average for Feedback and SetPoint.
+ FdBkAvg=FdBkAvg+(FeedBack-FdBkAvg)*(DelTime/180000);
+ StPtAvg=StPtAvg+(SetPoint-StPtAvg)*(DelTime/180000);
  
  PID();//how do I call this function
  Hum = h;
@@ -110,7 +114,8 @@ console.log(DerErr);
 //function for PID calc
 function PID () {
     LstPidErr = PidErr;
-    PidErr =SetPoint - FeedBack;
+//    PidErr =SetPoint - FeedBack;
+    PidErr = StPtAvg - FdBkAvg;
     IntErr = IntErr +((PidErr+LstPidErr)/2)*DelTime/IntTimeStep;// one to start
 //may want to take a running avg of DerErr
     DerErr = (PidErr-LstPidErr)/DelTime;
