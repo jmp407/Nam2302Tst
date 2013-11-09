@@ -3,7 +3,7 @@
 //Init
 var ReadTime= new Date(),LastRdTime =ReadTime, DelTime=ReadTime-LastRdTime;
 
-var tdel = 6000
+var tdel = 6000;
 var IntTimeStep = 300*tdel;//Times 300 is 1800 sec
 var SetPoint=71.1, FeedBack=71.1, FdBkAvg=71.1;//SetPoint-1;//Temperature in F
 var StPtAvg=SetPoint;
@@ -20,7 +20,7 @@ var DerErr=PidErr;//use the 5 min avg for Der
 var http = require('http');
 var cp = require('child_process');
 var am2302 = require('am2302');
-var tdel = 6000;
+//var tdel = 6000;
 var MyCndInt=setInterval(myConditions, tdel);
 var DhObj=am2302.read(7);
 //var DhObj={ h: 58.233, t: 23.80067 };
