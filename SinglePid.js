@@ -105,7 +105,7 @@ n.on('message', function(m) {
 console.log(ReadTime);
 console.log(LastRdTime);
 console.log(DelTime);
-console.log(FeedBack);
+console.log(FeedBack.toPrecision(4)+' '+FdBkAvg.toPrecision(4)+' '+StPtAvg.toPrecision(4));
 console.log(PidErr);
 console.log(IntErr);
 console.log(DerErr);
