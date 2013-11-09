@@ -4,7 +4,7 @@
 var ReadTime= new Date(),LastRdTime =ReadTime, DelTime=ReadTime-LastRdTime;
 
 var tdel = 6000
-var IntTimeStep = 10*tdel;//Times 10 is 60 sec
+var IntTimeStep = 30*tdel;//Times 30 is 180 sec
 var SetPoint=71.1, FeedBack=71.1, FdBkAvg=71.1;//SetPoint-1;//Temperature in F
 var StPtAvg=SetPoint;
 //Start at zero
