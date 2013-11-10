@@ -103,11 +103,11 @@ n.on('message', function(m) {
   //you can reset counter here
   if (i>4000){clearInterval(MyCndInt)}; //Write a routine to kill and respawn the process after x loops
   i++ ;
-console.log(ReadTime);
-console.log(LastRdTime);
-console.log(DelTime);
+console.log('Humidity control');
+console.log('Temperature control');
+console.log('Time between readings(milliseconds) '+ DelTime);
 console.log(FeedBack.toPrecision(4)+' '+FdBkAvg.toPrecision(4)+' '+StPtAvg.toPrecision(4));
-console.log(PidErr.toPrecision(4)+' ');
+console.log(PidErr.toPrecision(4)+' 'IntErr.toPrecision(4)+' 'DerErr.toPrecision(4)+' '+TotErr.toPrecision(4));
 console.log(IntErr.toPrecision(4)+' ');
 console.log(DerErr.toPrecision(4)+' '+TotErr.toPrecision(4));
 
