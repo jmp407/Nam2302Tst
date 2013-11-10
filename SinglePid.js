@@ -11,6 +11,7 @@ var StPtAvg=SetPoint;
 var LstPidErr=0, PidErr=SetPoint-FeedBack;//
 var IntErr=PidErr;//Int Err is averaged and times the delta time
 var DerErr=PidErr;//use the 5 min avg for Der
+var TotErr=PidErr + IntErr + DerErr;//Simple sum of errors for this controller
 
 //  A node.js script to read the humidity and temperature
 //  Need to add a calc to change Rh and temp to dew point or lbmH2O/lbmDryAir.
@@ -77,7 +78,7 @@ n.on('message', function(m) {
  FdBkAvg=FdBkAvg+(FeedBack-FdBkAvg)*(DelTime/180000);
  StPtAvg=StPtAvg+(SetPoint-StPtAvg)*(DelTime/180000);
  
- PID();//how do I call this function
+ PID();//This seems to work but should it?
  Hum = h;
  HumAvg1m = HumAvg1m + (h - HumAvg1m)/(60000/tdel);
  HumAvg5m = HumAvg5m + (h - HumAvg5m)/(5*60000/tdel);
@@ -106,9 +107,9 @@ console.log(ReadTime);
 console.log(LastRdTime);
 console.log(DelTime);
 console.log(FeedBack.toPrecision(4)+' '+FdBkAvg.toPrecision(4)+' '+StPtAvg.toPrecision(4));
-console.log(PidErr);
-console.log(IntErr);
-console.log(DerErr);
+console.log(PidErr.toPrecision(4)+' ');
+console.log(IntErr.toPrecision(4)+' ');
+console.log(DerErr.toPrecision(4)+' '+TotErr.toPrecision(4));
 
 }    
 // function for PID calc
@@ -125,6 +126,10 @@ function PID () {
     DerErr = (PidErr-LstPidErr)/DelTime;
     if (DerErr > 1)  { DerErr = 1};
     if (DerErr < -1) { DerErr = -1};
+// Sum the individual items for this controller
+    TotErr = PidErr + IntErr + DerErr;
+    if (TotErr > 1)  { TotErr = 1};
+    if (TotErr < -1) { TotErr = -1};
 }
 /*
 document.getElementById("ReadTime").innerHTML=ReadTime;
