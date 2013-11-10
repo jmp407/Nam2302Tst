@@ -7,9 +7,9 @@
     var DKs= new Array (0,0);//derivative gains
     var IaDtimeStp = new Array (1,1);//Time steps for I and D for humidity and temperature
     var SetPt = new Array (50,75);// set points hsp and tsp
-    // errors - Ph,Pt,
-    // errors - Ih,It
-    // errors - Dh and Dt
+// errors - Ph,Pt,
+// errors - Ih,It
+// errors - Dh and Dt
     
 var Vector=new Array (1,2,3,4,5);
 console.log(Vector);
