@@ -17,16 +17,41 @@ var TotErr=PidErr + IntErr + DerErr;//Simple sum of errors for this controller
     var DerTimeStp = new Array (1,1);//Time steps for D for humidity and temperature
     //var SPinit = new Array (72,50);// temperature and humidity to start but not limit
     var SetPt = new Array (50,75);// set points hsp and tsp
-// The PID init part 2 loops to start but not limit.
+    var FeedBack=SetPt, FdBkAvg=SetPt;//SetPoint-1;//Temperature in F
+    var StPtAvg=SetPt;
+// The PID init part, 2 loops to start but not limit.
     var AvgTiming=new Array (1,3,7);// 1, 5 and 7 min averages
     var AvgHv=new Array (50,50,50);// 1, 5 and 7 min humidity averages init
     var AvgTv=new Array (72,72,72);// 1, 5 and 7 min temperature averages init.
     var PKs= new Array (1,1);//proportional gains 
     var IKs= new Array (0,0);//integral gains, may not be needed with IntTimeStep
     var DKs= new Array (0,0);//derivative gains
-    // errors - Ph,Pt,
+// errors - Ph,Pt,
+    var LstPidErr=new Array(0,0), PidErr=new Array (0,0);//
 // errors - Ih,It
+    var IntErr = new Array(0,0);
 // errors - Dh and Dt
+    var DerErr = new Array(0,0);
+// PID Array
+function PIDArry() {
+// require a for i loop
+}
+// Single PID
+function PID () {
+    LstPidErr = PidErr;
+//  PidErr =SetPoint - FeedBack;
+    PidErr = StPtAvg - FdBkAvg;
+    if (PidErr > 1) { PidErr = 1};
+    if (PidErr < -1){ PidErr = -1};
+    IntErr = IntErr +((PidErr+LstPidErr)/2)*DelTime/IntTimeStep;// one to start
+    if (IntErr > 1) { IntErr = 1};
+    if (IntErr < -1)  { IntErr = -1};
+// may want to take a running avg of DerErr
+    DerErr = (PidErr-LstPidErr)/DelTime;
+    if (DerErr > 1)  { DerErr = 1};
+    if (DerErr < -1) { DerErr = -1};
+}
+// SngPidEnd
     
 var Vector=new Array (1,2,3,4,5);
 console.log(Vector);
