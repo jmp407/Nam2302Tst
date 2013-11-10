@@ -1,9 +1,8 @@
 //
 //Init Single PID
 var ReadTime= new Date(),LastRdTime =ReadTime, DelTime=ReadTime-LastRdTime;
-var SPinit=71.3;
-var tdel = 6000;
-var IntTimeStep = 300*tdel;//Times 300 is 1800 sec
+//var SPinit=71.3;
+//var IntTimeStep = 300*tdel;//Times 300 is 1800 sec
 var SetPoint=SPinit, FeedBack=SPinit, FdBkAvg=SPinit;//SetPoint-1;//Temperature in F
 var StPtAvg=SetPoint;
 //Start at zero
@@ -13,17 +12,19 @@ var DerErr=PidErr;//use the 5 min avg for Der
 var TotErr=PidErr + IntErr + DerErr;//Simple sum of errors for this controller
 // The vector/array version
 // init
-    var SPinit=new Array (72,50);// temperature and humidity to start but not limit
-// The PID part
-    var AvgTiming=new Array (1,5,15);// 1, 5 and 15min averages
-    var AvgHv=new Array (1,5,15);// 1, 5 and 15 min humidity averages
-    var AvgTv=new Array (1,5,15);// 1, 5 and 15 min temperature averages.
-    var PKs= new Array (1,1);//proportional gains
-    var IKs= new Array (0,0);//integral gains
-    var DKs= new Array (0,0);//derivative gains
-    var IaDtimeStp = new Array (1,1);//Time steps for I and D for humidity and temperature
+    var tdel = 6000;
+    var IntTimeStep = new Array (150*tdel,300*tdel,);//Times 300 is 1800 sec h and t
+    var DerTimeStp = new Array (1,1);//Time steps for D for humidity and temperature
+    //var SPinit = new Array (72,50);// temperature and humidity to start but not limit
     var SetPt = new Array (50,75);// set points hsp and tsp
-// errors - Ph,Pt,
+// The PID init part 2 loops to start but not limit.
+    var AvgTiming=new Array (1,3,7);// 1, 5 and 7 min averages
+    var AvgHv=new Array (50,50,50);// 1, 5 and 7 min humidity averages init
+    var AvgTv=new Array (72,72,72);// 1, 5 and 7 min temperature averages init.
+    var PKs= new Array (1,1);//proportional gains 
+    var IKs= new Array (0,0);//integral gains, may not be needed with IntTimeStep
+    var DKs= new Array (0,0);//derivative gains
+    // errors - Ph,Pt,
 // errors - Ih,It
 // errors - Dh and Dt
     
