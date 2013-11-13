@@ -24,6 +24,11 @@ var TotErr=new Array (0,0);PidErr + IntErr + DerErr;//Simple sum of errors for t
     var IntErr = new Array(0,0);
 // errors - Dh and Dt
     var DerErr = new Array(0,0);
+// Get the data    
+    
+// Then change the units and interp the dew point.
+
+
 // PID Array
 // 3 min running average for Feedback and SetPoint.
     FdBkAvg=FdBkAvg+(FeedBack-FdBkAvg)*(DelTime/180000);
@@ -45,6 +50,10 @@ function PIDArry() {
         DerErr[i] = (PidErr[i]-LstPidErr[i])/DelTime;
         if (DerErr[i] > 1)  { DerErr[i] = 1};
         if (DerErr[i] < -1) { DerErr[i] = -1};
+// Sum the individual items for this controller
+        TotErr[i] = PidErr[i] + IntErr[i] + DerErr[i];
+        if (TotErr[i] > 1)  { TotErr[i] = 1};
+        if (TotErr[i] < -1) { TotErr[i] = -1};
         
 }
 
