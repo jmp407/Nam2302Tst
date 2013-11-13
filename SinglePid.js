@@ -2,7 +2,7 @@
 //Single PID
 //Init
 var ReadTime= new Date(),LastRdTime =ReadTime, DelTime=ReadTime-LastRdTime;
-var SPinit=71.3;
+var SPinit=69.5;
 var tdel = 6000;
 var IntTimeStep = 300*tdel;//Times 300 is 1800 sec
 var SetPoint=SPinit, FeedBack=SPinit, FdBkAvg=SPinit;//SetPoint-1;//Temperature in F
