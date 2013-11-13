@@ -56,4 +56,15 @@ function PIDArry() {
         if (TotErr[i] < -1) { TotErr[i] = -1};
         
 }
+// print it
+console.log('Time between readings(milliseconds) '+ DelTime);
+console.log('Temperature control');
+i=1;
+console.log(FeedBack[i].toPrecision(4)+' '+FdBkAvg[i].toPrecision(4)+' '+StPtAvg[i].toPrecision(4));
+console.log(PidErr[i].toPrecision(4)+' '+IntErr[i].toPrecision(4)+' '+DerErr[i].toPrecision(4)+' '+TotErr[i].toPrecision(4));
+console.log('Humidity control');
+i=2;
+console.log(FeedBack[i].toPrecision(4)+' '+FdBkAvg[i].toPrecision(4)+' '+StPtAvg[i].toPrecision(4));
+console.log(PidErr[i].toPrecision(4)+' '+IntErr[i].toPrecision(4)+' '+DerErr[i].toPrecision(4)+' '+TotErr[i].toPrecision(4));
+console.log();
 
