@@ -1,15 +1,7 @@
 //
-//Init Single PID
+//Init Single PID and non array vars
 var ReadTime= new Date(),LastRdTime =ReadTime, DelTime=ReadTime-LastRdTime;
-//var SPinit=71.3;
-//var IntTimeStep = 300*tdel;//Times 300 is 1800 sec
-var SetPoint=SPinit, FeedBack=SPinit, FdBkAvg=SPinit;//SetPoint-1;//Temperature in F
-var StPtAvg=SetPoint;
-//Start at zero
-var LstPidErr=0, PidErr=SetPoint-FeedBack;//
-var IntErr=PidErr;//Int Err is averaged and times the delta time
-var DerErr=PidErr;//use the 5 min avg for Der
-var TotErr=PidErr + IntErr + DerErr;//Simple sum of errors for this controller
+var TotErr=new Array (0,0);PidErr + IntErr + DerErr;//Simple sum of errors for this controller
 // The vector/array version
 // init
     var tdel = 6000;
@@ -33,6 +25,12 @@ var TotErr=PidErr + IntErr + DerErr;//Simple sum of errors for this controller
 // errors - Dh and Dt
     var DerErr = new Array(0,0);
 // PID Array
+// 3 min running average for Feedback and SetPoint.
+    FdBkAvg=FdBkAvg+(FeedBack-FdBkAvg)*(DelTime/180000);
+    StPtAvg=StPtAvg+(SetPoint-StPtAvg)*(DelTime/180000);
+ 
+ PIDArry();//This seems to work but should it?
+
 function PIDArry() {
 // requires a for i loop
     for (var i=0;i<PidErr.length;i++)
@@ -49,28 +47,4 @@ function PIDArry() {
         if (DerErr[i] < -1) { DerErr[i] = -1};
         
 }
-// Single PID
-function PID () {
-    LstPidErr = PidErr;
-//  PidErr =SetPoint - FeedBack;
-    PidErr = StPtAvg - FdBkAvg;
-    if (PidErr > 1) { PidErr = 1};
-    if (PidErr < -1){ PidErr = -1};
-    IntErr = IntErr +((PidErr+LstPidErr)/2)*DelTime/IntTimeStep;// one to start
-    if (IntErr > 1) { IntErr = 1};
-    if (IntErr < -1)  { IntErr = -1};
-// may want to take a running avg of DerErr
-    DerErr = (PidErr-LstPidErr)/DelTime;
-    if (DerErr > 1)  { DerErr = 1};
-    if (DerErr < -1) { DerErr = -1};
-}
-// SngPidEnd
-    
-var Vector=new Array (1,2,3,4,5);
-console.log(Vector);
-var Ks=new Array(2,3,4,5,6);
-for ( i in Vector)
-{
-    Vector[i]=Ks[i]*Vector[i];
-    }
-console.log(Vector);
+
