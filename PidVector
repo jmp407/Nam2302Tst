@@ -35,8 +35,19 @@ var TotErr=PidErr + IntErr + DerErr;//Simple sum of errors for this controller
 // PID Array
 function PIDArry() {
 // requires a for i loop
-    for 
-
+    for (var i=0;i<PidErr.length;i++)
+        LstPidErr[i]=PidErr[i];
+        PidErr[i] = StPtAvg[i] - FdBkAvg[i];
+        if (PidErr[i] > 1) { PidErr[i] = 1};
+        if (PidErr[i] < -1){ PidErr[i] = -1};
+        IntErr[i] = IntErr[i] +((PidErr[i]+LstPidErr[i])/2)*DelTime/IntTimeStep;// one to start
+        if (IntErr[i] > 1) { IntErr[i] = 1};
+        if (IntErr[i] < -1)  { IntErr[i] = -1};
+// may want to take a running avg of DerErr
+        DerErr[i] = (PidErr[i]-LstPidErr[i])/DelTime;
+        if (DerErr[i] > 1)  { DerErr[i] = 1};
+        if (DerErr[i] < -1) { DerErr[i] = -1};
+        
 }
 // Single PID
 function PID () {
