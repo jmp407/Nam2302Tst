@@ -124,7 +124,7 @@ function PID () {
     if (IntErr > .5) { IntErr = .5};
     if (IntErr < -.5)  { IntErr = -.5};
 // may want to take a running avg of DerErr
-    DerErr = (PidErr-LstPidErr)/DelTime;
+    DerErr = 1000*(PidErr-LstPidErr)/DelTime;
     if (DerErr > 1)  { DerErr = 1};
     if (DerErr < -1) { DerErr = -1};
 // Sum the individual items for this controller
