@@ -4,7 +4,7 @@
 var ReadTime= new Date(),LastRdTime =ReadTime, DelTime=ReadTime-LastRdTime;
 var SPinit=69.5;
 var tdel = 6000;
-var IntTimeStep = 200*tdel;//Times 300 is 1800 sec
+var IntTimeStep = 100*tdel;//Times 300 is 1800 sec
 var SetPoint=SPinit, FeedBack=SPinit, FdBkAvg=SPinit;//SetPoint-1;//Temperature in F
 var StPtAvg=SetPoint;
 //Start at zero
