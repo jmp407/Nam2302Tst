@@ -4,7 +4,7 @@
 var ReadTime= new Date(),LastRdTime =ReadTime, DelTime=ReadTime-LastRdTime;
 var SPinit=69.5;
 var tdel = 6000;
-var IntTimeStep = 300*tdel;//Times 300 is 1800 sec
+var IntTimeStep = 200*tdel;//Times 300 is 1800 sec
 var SetPoint=SPinit, FeedBack=SPinit, FdBkAvg=SPinit;//SetPoint-1;//Temperature in F
 var StPtAvg=SetPoint;
 //Start at zero
@@ -109,7 +109,8 @@ console.log(FeedBack.toPrecision(4)+' '+FdBkAvg.toPrecision(4)+' '+StPtAvg.toPre
 console.log(PidErr.toPrecision(4)+' '+IntErr.toPrecision(4)+' '+DerErr.toPrecision(4)+' '+TotErr.toPrecision(4));
 console.log('Humidity control');
 console.log(IntErr.toPrecision(4)+' '+DerErr.toPrecision(4)+' '+TotErr.toPrecision(4));
-console.log('\u0007');
+if (TotErr > 0.5 ){console.log('\u0007')};
+if (TotErr < -0.5 ){console.log('\u0007')};
 
 }    
 // function for PID calc
@@ -120,8 +121,8 @@ function PID () {
     if (PidErr > 1) { PidErr = 1};
     if (PidErr < -1){ PidErr = -1};
     IntErr = IntErr +((PidErr+LstPidErr)/2)*DelTime/IntTimeStep;// one to start
-    if (IntErr > 1) { IntErr = 1};
-    if (IntErr < -1)  { IntErr = -1};
+    if (IntErr > .5) { IntErr = .5};
+    if (IntErr < -.5)  { IntErr = -.5};
 // may want to take a running avg of DerErr
     DerErr = (PidErr-LstPidErr)/DelTime;
     if (DerErr > 1)  { DerErr = 1};
