@@ -109,8 +109,8 @@ console.log(FeedBack.toPrecision(4)+' '+FdBkAvg.toPrecision(4)+' '+StPtAvg.toPre
 console.log(PidErr.toPrecision(4)+' '+IntErr.toPrecision(4)+' '+DerErr.toPrecision(4)+' '+TotErr.toPrecision(4));
 console.log('Humidity control');
 console.log(IntErr.toPrecision(4)+' '+DerErr.toPrecision(4)+' '+TotErr.toPrecision(4));
-if (TotErr > 0.5 ){console.log('\u0007')};
-if (TotErr < -0.5 ){console.log('\u0007')};
+//if (TotErr > 0.5 ){console.log('\u0007')};
+//if (TotErr < -0.5 ){console.log('\u0007')};
 
 }    
 // function for PID calc
