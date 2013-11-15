@@ -15,6 +15,6 @@ rl.on('line', function(line) {
   }
   rl.prompt();
 }).on('close', function() {
-  console.log('Have a great day!');
+  console.log('Have a great day!  set point'+ line);
   process.exit(0);
 });
