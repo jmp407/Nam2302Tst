@@ -7,14 +7,18 @@ var SPinit=69.7;
 var tdel = 6000;
 // 1.5 min running average for Feedback and SetPoint.  About 15 readings
 var RavgDel = 15 * tdel; 
-var IntTimeStep = 100*tdel;//Times 300 is 1800 sec
+
 var SetPoint=SPinit, FeedBack=SPinit, FdBkAvg=SPinit;//SetPoint-1;//Temperature in F
 var StPtAvg=SetPoint;
 //Start at zero
 var LstPidErr=0, PidErr=SetPoint-FeedBack;// Need a P gain for TotErr calc
-var Kp = 10; // this will create an output (TotErr) of 1 at .1 PidErr
+var Kp = 2.67; // this will create an output (TotErr) of 1 at .1 PidErr
 var IntErr=PidErr;//Int Err is averaged and times the delta time
+var Ir = 0.8;// resets/min approx = DelTime/IntTimeStep
+var IntTimeStep = 60000;// 1 min in ms
+//tdel/Ir;//=100*tdel;//Times 300 is 1800 sec
 var DerErr=PidErr;//use the 5 min avg for Der
+var Dr = 0.2;// minutes
 var TotErr=(Kp * PidErr) + IntErr + DerErr;//Simple sum of errors for this controller
 
 //  A node.js script to read the humidity and temperature
@@ -128,11 +132,11 @@ function PID () {
     if (IntErr > .5) { IntErr = .5};
     if (IntErr < -.5)  { IntErr = -.5};
 // may want to take a running avg of DerErr
-    DerErr = -1000*(PidErr-LstPidErr)/DelTime;
+    DerErr = (PidErr-LstPidErr)*IntTimeStep/DelTime;
     if (DerErr > 1)  { DerErr = 1};
     if (DerErr < -1) { DerErr = -1};
 // Sum the individual items for this controller
-    TotErr = (Kp * PidErr) + IntErr + DerErr;
+    TotErr = (Kp * PidErr) + Ir*IntErr + Dr*DerErr;
     if (TotErr > 1)  { TotErr = 1};
     if (TotErr < -1) { TotErr = -1};
 }
