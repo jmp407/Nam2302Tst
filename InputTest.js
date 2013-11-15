@@ -1,8 +1,10 @@
 var readline = require('readline'),
     rl = readline.createInterface(process.stdin, process.stdout);
 
-rl.setPrompt('OHAI> ');
-rl.prompt();
+rl.setPrompt('Sp> ');
+interface.question('Enter a new 3 digit (1 decimal) set point: ', function(answer) {
+  console.log('The new set point is ' + answer + 'dF');
+});
 
 rl.on('line', function(line) {
   switch(line.trim()) {
