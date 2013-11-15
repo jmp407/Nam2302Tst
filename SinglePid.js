@@ -2,7 +2,7 @@
 //Single PID
 //Init
 var ReadTime= new Date(),LastRdTime =ReadTime, DelTime=ReadTime-LastRdTime;
-var SPinit=69.7;
+var SPinit=71.96;//69.7;
 //var tdel = 6000 is the time ms between h and t readings from the DHT22;
 var tdel = 6000;
 // 1.5 min running average for Feedback and SetPoint.  About 15 readings
