@@ -129,8 +129,8 @@ function PID () {
     if (PidErr > 1) { PidErr = 1};
     if (PidErr < -1){ PidErr = -1};
     IntErr = IntErr +((PidErr+LstPidErr)/2)*DelTime/IntTimeStep;// one to start
-    if (IntErr > .5) { IntErr = .5};
-    if (IntErr < -.5)  { IntErr = -.5};
+    if (IntErr > 1) { IntErr = 1};
+    if (IntErr < -1)  { IntErr = -1};
 // may want to take a running avg of DerErr
     DerErr = (PidErr-LstPidErr)*IntTimeStep/DelTime;
     if (DerErr > 1)  { DerErr = 1};
