@@ -11,10 +11,11 @@ var IntTimeStep = 100*tdel;//Times 300 is 1800 sec
 var SetPoint=SPinit, FeedBack=SPinit, FdBkAvg=SPinit;//SetPoint-1;//Temperature in F
 var StPtAvg=SetPoint;
 //Start at zero
-var LstPidErr=0, PidErr=SetPoint-FeedBack;//
+var LstPidErr=0, PidErr=SetPoint-FeedBack;// Need a P gain for TotErr calc
+var Kp = 10; // this will create an output (TotErr) of 1 at .1 PidErr
 var IntErr=PidErr;//Int Err is averaged and times the delta time
 var DerErr=PidErr;//use the 5 min avg for Der
-var TotErr=PidErr + IntErr + DerErr;//Simple sum of errors for this controller
+var TotErr=(Kp * PidErr) + IntErr + DerErr;//Simple sum of errors for this controller
 
 //  A node.js script to read the humidity and temperature
 //  Need to add a calc to change Rh and temp to dew point or lbmH2O/lbmDryAir.
@@ -131,7 +132,7 @@ function PID () {
     if (DerErr > 1)  { DerErr = 1};
     if (DerErr < -1) { DerErr = -1};
 // Sum the individual items for this controller
-    TotErr = PidErr + IntErr + DerErr;
+    TotErr = (Kp * PidErr) + IntErr + DerErr;
     if (TotErr > 1)  { TotErr = 1};
     if (TotErr < -1) { TotErr = -1};
 }
