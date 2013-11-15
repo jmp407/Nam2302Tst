@@ -3,7 +3,10 @@
 //Init
 var ReadTime= new Date(),LastRdTime =ReadTime, DelTime=ReadTime-LastRdTime;
 var SPinit=69.5;
+//var tdel = 6000 is the time ms between h and t readings from the DHT22;
 var tdel = 6000;
+// 1.5 min running average for Feedback and SetPoint.  About 15 readings
+var RavgDel = 15 * tdel; 
 var IntTimeStep = 100*tdel;//Times 300 is 1800 sec
 var SetPoint=SPinit, FeedBack=SPinit, FdBkAvg=SPinit;//SetPoint-1;//Temperature in F
 var StPtAvg=SetPoint;
@@ -75,9 +78,9 @@ n.on('message', function(m) {
  DelTime=ReadTime-LastRdTime;
  LastRdTime =ReadTime;
  // 3 min running average for Feedback and SetPoint.
- FdBkAvg=FdBkAvg+(FeedBack-FdBkAvg)*(DelTime/180000);
- StPtAvg=StPtAvg+(SetPoint-StPtAvg)*(DelTime/180000);
- 
+ FdBkAvg=FdBkAvg+(FeedBack-FdBkAvg)*(DelTime/RavgDel);
+ StPtAvg=StPtAvg+(SetPoint-StPtAvg)*(DelTime/RavgDel);
+ // call the pid function
  PID();//This seems to work but should it?
  Hum = h;
  HumAvg1m = HumAvg1m + (h - HumAvg1m)/(60000/tdel);
@@ -108,7 +111,7 @@ console.log('Temperature control');
 console.log(FeedBack.toPrecision(4)+' '+FdBkAvg.toPrecision(4)+' '+StPtAvg.toPrecision(4));
 console.log(PidErr.toPrecision(4)+' '+IntErr.toPrecision(4)+' '+DerErr.toPrecision(4)+' '+TotErr.toPrecision(4));
 console.log('Humidity control');
-console.log(IntErr.toPrecision(4)+' '+DerErr.toPrecision(4)+' '+TotErr.toPrecision(4));
+console.log(Hum.toPrecision(4)+' '+Temp.toPrecision(4)+'    '+i);
 if (TotErr > 0.5 ){console.log('\u0007')};
 //if (TotErr < -0.5 ){console.log('\u0007')};
 
