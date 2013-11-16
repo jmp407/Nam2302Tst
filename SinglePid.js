@@ -8,7 +8,7 @@ var readline = require('readline'),
 rl.on('line', function() {
 //
     rl.question('Enter a new 3 digit (1 decimal) set point: ', function(answer) {
-    var SetPoint = answer;
+    SetPoint = answer;
     console.log('The new set point is ' + SetPoint + ' dF');
 //    rl.prompt();
     });
@@ -129,7 +129,7 @@ n.on('message', function(m) {
   if (i>4000){clearInterval(MyCndInt)}; //Write a routine to kill and respawn the process after x loops
   i++ ;
 console.log('Time between readings(milliseconds) '+ DelTime);
-console.log('Temperature control');
+console.log('Temperature control with SetPoint: '+ SetPoint);
 console.log(FeedBack.toPrecision(4)+' '+FdBkAvg.toPrecision(4)+' '+StPtAvg.toPrecision(4));
 console.log(PidErr.toPrecision(4)+' '+IntErr.toPrecision(4)+' '+DerErr.toPrecision(4)+' '+TotErr.toPrecision(4));
 console.log('Humidity control');
