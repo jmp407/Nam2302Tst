@@ -12,7 +12,7 @@ rl.on('line', function() {
     });
 });  
 rl.on('close', function() {
-  console.log('Have a great day!  set point'+ SetPoint);
+  console.log('Have a great day! ');
   process.exit(0);
 });
 function myLogTest(){
