@@ -22,8 +22,8 @@ rl.on('line', function() {
     var SetPoint = answer;
     console.log('The new set point is ' + SetPoint + ' dF');
 //    rl.prompt();
-});
-  
+    });
+});  
 rl.on('close', function() {
   console.log('Have a great day!  set point'+ SetPoint);
   process.exit(0);
