@@ -17,8 +17,10 @@ rl.on('line', function(line) {
       break;
   }
   rl.prompt();
-  */
-}).on('close', function() {
+  
+})
+*/
+rl.on('close', function() {
   console.log('Have a great day!  set point'+ answer);
   process.exit(0);
 });
