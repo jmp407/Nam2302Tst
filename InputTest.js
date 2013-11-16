@@ -1,5 +1,4 @@
 
-
 var MyCndInt=setInterval(myLogTest, 10000);
 
 
@@ -29,6 +28,6 @@ rl.on('close', function() {
   console.log('Have a great day!  set point'+ SetPoint);
   process.exit(0);
 });
-function(myLogTest){
+function myLogTest(){
     console.log('it works '+ new Date());
 }
