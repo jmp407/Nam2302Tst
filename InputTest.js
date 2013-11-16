@@ -3,8 +3,8 @@ var readline = require('readline'),
 
 //rl.setPrompt('Sp> ');
 rl.question('Enter a new 3 digit (1 decimal) set point: ', function(answer) {
-  SetPoint = answer
-  console.log('The new set point is ' + SetPoint + 'dF');
+ var SetPoint = answer
+  console.log('The new set point is ' + SetPoint + ' dF');
 });
 /*
 rl.on('line', function(line) {
@@ -21,6 +21,6 @@ rl.on('line', function(line) {
 })
 */
 rl.on('close', function() {
-  console.log('Have a great day!  set point'+ answer);
+  console.log('Have a great day!  set point'+ SetPoint);
   process.exit(0);
 });
