@@ -8,7 +8,7 @@ var readline = require('readline'),
 //  console.log('The new set point is ' + SetPoint + ' dF');
 //});
 
-rl.on('line', function(newSp) {
+rl.on('line', function() {
 /*  switch(line.trim()) {
     case 'hello':
       console.log('world!');
