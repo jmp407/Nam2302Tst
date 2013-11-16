@@ -1,5 +1,22 @@
 //
 //Single PID
+
+// Input the setpoint, just hit enter.  Then hurry.
+var readline = require('readline'),
+    rl = readline.createInterface(process.stdin, process.stdout);
+//
+rl.on('line', function() {
+//
+    rl.question('Enter a new 3 digit (1 decimal) set point: ', function(answer) {
+    var SetPoint = answer;
+    console.log('The new set point is ' + SetPoint + ' dF');
+//    rl.prompt();
+    });
+});  
+rl.on('close', function() {
+  console.log('Have a great day! ');
+  process.exit(0);
+});
 //Init
 var ReadTime= new Date(),LastRdTime =ReadTime, DelTime=ReadTime-LastRdTime;
 var SPinit=71.94;//69.7;
