@@ -30,4 +30,4 @@ rl.on('close', function() {
 });
 function myLogTest(){
     console.log('it works '+ new Date());
-}
+};
