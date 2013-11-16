@@ -1,10 +1,7 @@
-
 var MyCndInt=setInterval(myLogTest, 10000);
-
 
 var readline = require('readline'),
     rl = readline.createInterface(process.stdin, process.stdout);
-
 //rl.setPrompt('Sp> ');
 rl.question('Enter a new 3 digit (1 decimal) set point: ', function(answer) {
  var SetPoint = answer
@@ -21,7 +18,6 @@ rl.on('line', function(line) {
       break;
   }
   rl.prompt();
-  
 })
 */
 rl.on('close', function() {
