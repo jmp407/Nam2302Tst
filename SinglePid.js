@@ -9,7 +9,7 @@ rl.on('line', function() {
 //
     rl.question('Enter a new 3 digit (1 decimal) set point: ', function(answer) {
     //process.stdin.resume(); //Does not stop stdout
-    SetPoint = answer;
+    SetPoint = answer; //entering text really craps up the program calculations.  Restart required.
     console.log('The new set point is ' + SetPoint + ' dF');
 //    rl.prompt();
     });
