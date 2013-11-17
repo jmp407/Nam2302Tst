@@ -8,6 +8,7 @@ var readline = require('readline'),
 rl.on('line', function() {
 //
     rl.question('Enter a new 3 digit (1 decimal) set point: ', function(answer) {
+    process.stdin.resume();
     SetPoint = answer;
     console.log('The new set point is ' + SetPoint + ' dF');
 //    rl.prompt();
