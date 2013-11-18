@@ -7,10 +7,10 @@ var client = net.connect({port: 8124},
 });
 client.on('data', function(data) {
   console.log(data.toString());// this appears to be data from the server.
-  //  add some code hear to capture the new SetPoint
+  //  add some code here to capture the new SetPoint
   
   // Move the next line to another function or ???
-  client.end();
+  //client.end();
 });
 client.on('end', function() {
   console.log('client disconnected');// because the server disconnected
