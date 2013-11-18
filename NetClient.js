@@ -8,6 +8,7 @@ var client = net.connect({port: 8124},
 client.on('data', function(data) {
   console.log(data.toString());// this appears to be data from the server.
   //  add some code here to capture the new SetPoint
+  client.write('The new SetPoint has been registered.\r\n');
   
   // Move the next line to another function or ???
   //client.end();
