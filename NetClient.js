@@ -6,9 +6,12 @@ var client = net.connect({port: 8124},
   client.write('The new SetPoint has been registered.\r\n');
 });
 client.on('data', function(data) {
-  console.log(data.toString());
+  console.log(data.toString());// this appears to be data from the server.
+  //  add some code hear to capture the new SetPoint
+  
+  // Move the next line to another function or ???
   client.end();
 });
 client.on('end', function() {
-  console.log('client disconnected');
+  console.log('client disconnected');// because the server disconnected
 });
