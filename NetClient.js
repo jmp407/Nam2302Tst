@@ -10,7 +10,7 @@ client.on('data', function(data) {
   //  add some code here to capture the new SetPoint
   client.write('The new SetPoint has been registered.\r\n');
   // one of these keeps repeating
-  // Move the next line to another function or ???
+  client.pause();// Move the next line to another function or ???
   //client.end();
 });
 client.on('end', function() {
