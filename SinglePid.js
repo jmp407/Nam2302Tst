@@ -111,21 +111,23 @@ n.on('message', function(m) {
  HumAvg5m = HumAvg5m + (h - HumAvg5m)/(5*60000/tdel);
  HumAvg15m = HumAvg15m + (h - HumAvg15m)/(15*60000/tdel);
  Hum = Hum.toPrecision(5); // Is this the last Hum?
- Temp = t; // format the t to farhenheit and 5 digits after the averages.
+ Temp = t; // format the t to 5 digits after the averages.  It is F.
  TempAvg1m = TempAvg1m + (t - TempAvg1m)/(60000/tdel);
  TempAvg5m = TempAvg5m + (t - TempAvg5m)/(5*60000/tdel);
  TempAvg15m = TempAvg15m + (t - TempAvg15m)/(15*60000/tdel);
- txHum="The humidity is: "+ h.toPrecision(4)+"</br>";
+ Temp = Temp.toPrecision(5); // ready for logging.
+ txHum="The humidity is: "+ h.toPrecision(4)+"</br>"; // This was for the web page interface
  txTemp="The temperature is: " + t.toPrecision(4)+"</br>";
 //console.log(DhObj);
 //Need to format the h and tF and clean up the data file for spreadsheets and charting.
- DhTxt=JSON.stringify(DhObj)+" "+i.toString() + '\n';
+ DhTxt= Hum.toString()+", "+ Temp.toString()+", "+i.toString()+", "+ReadTime.toString() + '\n';
  // Here is the file logging statements
  filAppd.appendFile('htdata.txt', DhTxt, function (err) {
   if (err) throw err;
   //console.log('The "data to append" was appended to file!');
 });
 //console.log(DhTxt);
+// This was used to create a web page later.
     txHumAvg1m = "One  minute humidity average: " + HumAvg1m.toPrecision(4)+"</br>";
     txHumAvg5m = "Five minute humidity average: " + HumAvg5m.toPrecision(4)+"</br>";
    txHumAvg15m = "Fifteen min humidity average: " + HumAvg15m.toPrecision(4)+"</br>";
@@ -143,8 +145,11 @@ console.log(FeedBack.toPrecision(4)+' '+FdBkAvg.toPrecision(4)+' '+StPtAvg.toPre
 console.log(PidErr.toPrecision(4)+' '+IntErr.toPrecision(4)+' '+DerErr.toPrecision(4)+' '+TotErr.toPrecision(4));
 console.log('Humidity control');
 console.log(Hum.toPrecision(4)+' '+Temp.toPrecision(4)+'    '+i);
-if (TotErr > 0.5 ){console.log('\u0007')};
-//if (TotErr < -0.5 ){console.log('\u0007')};
+// Below is an attempt to create an audio alert to signal a manual control change
+// But it needs to toggle off when the change is complete and then set the new alarm flag
+//    for step two in the on/off process.
+if (TotErr > 0.5 ){console.log('\u0007')}; // It can be annoying, this rings the system bell.
+//if (TotErr < -0.5 ){console.log('\u0007')}; // After fixing replace the .5 with a var deadbnd
 
 }    
 // function for PID calc
@@ -166,6 +171,7 @@ function PID () {
     if (TotErr > 1)  { TotErr = 1};
     if (TotErr < -1) { TotErr = -1};
 }
+// How was the following working?
 /*
 document.getElementById("ReadTime").innerHTML=ReadTime;
 document.getElementById("LastRdTime").innerHTML=LastRdTime;
