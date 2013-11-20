@@ -44,13 +44,13 @@ var TotErr=(Kp * PidErr) + IntErr + DerErr;//Simple sum of errors for this contr
 //  Need to add a calc to change Rh and temp to dew point or lbmH2O/lbmDryAir.
 //  Need to call PID script
 //  Added Date/Time to h and t Read
-
-var http = require('http');
-var cp = require('child_process');
-var am2302 = require('am2302');
+// The next three lines could use some work
+var http = require('http'); // May not need this for the socket communication
+var cp = require('child_process'); // This might allow coder to call a js as root
+var am2302 = require('am2302'); // Then this would be a in another js
 //var tdel = 6000;
 var MyCndInt=setInterval(myConditions, tdel);
-var DhObj=am2302.read(7);
+var DhObj=am2302.read(7); // This initialization is requiring am2302 above
 //var DhObj={ h: 58.233, t: 23.80067 };
 var i=1;
 var h=DhObj.h;//.toPrecision(4);
@@ -75,12 +75,12 @@ var txTemp;
 var txTempAvg1m;
 var txTempAvg5m;
 var txTempAvg15m;
-function myConditions()
+function myConditions()   //this will repeat every tdel milliseconds
 {
   ReadTime= new Date();
-  //this will repeat every tdel milliseconds
+
 // Fork the process to read the meter
-var n = cp.fork(__dirname + '/sub.js');
+var n = cp.fork(__dirname + '/sub.js');  // Does this sup require the am2302 js?
 // get the temperature and humidity via a child message
 // and then kill the process
 n.on('message', function(m) {
@@ -106,18 +106,21 @@ n.on('message', function(m) {
  StPtAvg=StPtAvg+(SetPoint-StPtAvg)*(DelTime/RavgDel);
  // call the pid function
  PID();//This seems to work but should it?
- Hum = h;
+ Hum = h; // format h to 5 digits after the averages.
  HumAvg1m = HumAvg1m + (h - HumAvg1m)/(60000/tdel);
  HumAvg5m = HumAvg5m + (h - HumAvg5m)/(5*60000/tdel);
  HumAvg15m = HumAvg15m + (h - HumAvg15m)/(15*60000/tdel);
- Temp = t;
+ Hum = Hum.toPrecision(5); // Is this the last Hum?
+ Temp = t; // format the t to farhenheit and 5 digits after the averages.
  TempAvg1m = TempAvg1m + (t - TempAvg1m)/(60000/tdel);
  TempAvg5m = TempAvg5m + (t - TempAvg5m)/(5*60000/tdel);
  TempAvg15m = TempAvg15m + (t - TempAvg15m)/(15*60000/tdel);
  txHum="The humidity is: "+ h.toPrecision(4)+"</br>";
  txTemp="The temperature is: " + t.toPrecision(4)+"</br>";
 //console.log(DhObj);
+//Need to format the h and tF and clean up the data file for spreadsheets and charting.
  DhTxt=JSON.stringify(DhObj)+" "+i.toString() + '\n';
+ // Here is the file logging statements
  filAppd.appendFile('htdata.txt', DhTxt, function (err) {
   if (err) throw err;
   //console.log('The "data to append" was appended to file!');
