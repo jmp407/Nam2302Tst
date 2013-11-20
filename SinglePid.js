@@ -4,7 +4,7 @@
 // Input the setpoint, just hit enter.  Then hurry.
 var filAppd = require('fs');
 var readline = require('readline'),
-    rl = readline.createInterface(process.stdin, process.stdout);
+    rl = readline.createInterface(process.stdin, process.stdout); // This just doesn't look right
 //
 rl.on('line', function() {
 //
