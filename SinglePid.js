@@ -144,7 +144,7 @@ console.log('Temperature control with SetPoint: '+ SetPoint);
 console.log(FeedBack.toPrecision(4)+' '+FdBkAvg.toPrecision(4)+' '+StPtAvg.toPrecision(4));
 console.log(PidErr.toPrecision(4)+' '+IntErr.toPrecision(4)+' '+DerErr.toPrecision(4)+' '+TotErr.toPrecision(4));
 console.log('Humidity control');
-console.log(Hum.toPrecision(4)+' '+Temp.toPrecision(4)+'    '+i);
+console.log(Hum+' '+Temp+'    '+i);
 // Below is an attempt to create an audio alert to signal a manual control change
 // But it needs to toggle off when the change is complete and then set the new alarm flag
 //    for step two in the on/off process.
