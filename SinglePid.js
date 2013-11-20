@@ -2,6 +2,7 @@
 //Single PID
 
 // Input the setpoint, just hit enter.  Then hurry.
+var filAppd = require('fs');
 var readline = require('readline'),
     rl = readline.createInterface(process.stdin, process.stdout);
 //
@@ -117,6 +118,10 @@ n.on('message', function(m) {
  txTemp="The temperature is: " + t.toPrecision(4)+"</br>";
 //console.log(DhObj);
  DhTxt=JSON.stringify(DhObj)+" "+i;
+ filAppd.appendFile('htdata.txt', DhTxt, function (err) {
+  if (err) throw err;
+  //console.log('The "data to append" was appended to file!');
+});
 //console.log(DhTxt);
     txHumAvg1m = "One  minute humidity average: " + HumAvg1m.toPrecision(4)+"</br>";
     txHumAvg5m = "Five minute humidity average: " + HumAvg5m.toPrecision(4)+"</br>";
@@ -127,7 +132,7 @@ n.on('message', function(m) {
     txTempAvg15m ="Fifteen min temperature average: " + TempAvg15m.toPrecision(4)+"</br>";
 
   //you can reset counter here
-  if (i>4000){clearInterval(MyCndInt)}; //Write a routine to kill and respawn the process after x loops
+  if (i>8000){clearInterval(MyCndInt)}; //Write a routine to kill and respawn the process after x loops
   i++ ;
 console.log('Time between readings(milliseconds) '+ DelTime);
 console.log('Temperature control with SetPoint: '+ SetPoint);
