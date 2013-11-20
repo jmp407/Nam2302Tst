@@ -117,7 +117,7 @@ n.on('message', function(m) {
  txHum="The humidity is: "+ h.toPrecision(4)+"</br>";
  txTemp="The temperature is: " + t.toPrecision(4)+"</br>";
 //console.log(DhObj);
- DhTxt=JSON.stringify(DhObj)+" "+i.tostring + '\n';
+ DhTxt=JSON.stringify(DhObj)+" "+i.toString() + '\n';
  filAppd.appendFile('htdata.txt', DhTxt, function (err) {
   if (err) throw err;
   //console.log('The "data to append" was appended to file!');
