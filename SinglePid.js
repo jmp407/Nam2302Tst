@@ -120,7 +120,7 @@ n.on('message', function(m) {
  txTemp="The temperature is: " + t.toPrecision(4)+"</br>";
 //console.log(DhObj);
 //Need to format the h and tF and clean up the data file for spreadsheets and charting.
- DhTxt= Hum.toString()+", "+ Temp.toString()+", "+i.toString()+", "+ReadTime.toString() + '\n';
+ DhTxt= Hum.toString()+", "+ Temp.toString()+", "+i.toString()+", "+ReadTime.valueOf() + '\n';
  // Here is the file logging statements
  filAppd.appendFile('htdata.txt', DhTxt, function (err) {
   if (err) throw err;
