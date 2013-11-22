@@ -121,7 +121,7 @@ n.on('message', function(m) {
  txTemp="The temperature is: " + t.toPrecision(4)+"</br>";
 //console.log(DhObj);
 //Need to format the h and tF and clean up the data file for spreadsheets and charting.
- DhTxt= Hum.toPrecision(5) +", ";
+ DhTxt= Hum +", ";
  DhTxt = DhTxt + HumAvg1m.toPrecision(5) +", ";
  DhTxt = DhTxt + FeedBack.toPrecision(5) +", "; // for now this is only the temperature
  DhTxt = DhTxt + FdBkAvg.toPrecision(5) +", ";
