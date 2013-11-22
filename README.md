@@ -22,3 +22,6 @@ Useful Raspberry Pi console commands:
 How to log data to a file:
   http://stackoverflow.com/questions/2496710/writing-files-in-nodejs  and scroll down for links to node.js
     
+How to POST input to the main routines.
+  Handling Post Requests  http://blog.thekfactor.info/posts/an-introduction-to-node-js-and-handling-post-requests/
+  
