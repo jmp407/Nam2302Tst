@@ -8,7 +8,7 @@ var http = require('http');
 http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/html'});
 //  var Reld ="<script> setTimeout(function(){location.reload()}, 5000); </script>"
-
+console.log(req);
 //  res.write(Reld);
   //console.log(DhObj," ",i);
   DhTxt = Date() + "</br>";
