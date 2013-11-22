@@ -87,7 +87,7 @@ var n = cp.fork(__dirname + '/sub.js');  // Does this sup require the am2302 js?
 n.on('message', function(m) {
 //  console.log('PARENT got message:', m);
   DhObj = m;
-  console.log(m);
+//  console.log(m);
   n.kill('SIGHUP');
 });
 // DhObj=am2302.read(7);
@@ -95,7 +95,7 @@ n.on('message', function(m) {
     var ms = d.getMilliseconds();
  //   console.log(d,ms);
  var dtime = d + ms;
- console.log(dtime);
+ //console.log(dtime);
     
  h=DhObj.h;//.toPrecision(4);
  t=32+1.8*DhObj.t;//.toPrecision(4)*9/5+32;
@@ -132,7 +132,7 @@ n.on('message', function(m) {
  DhTxt = DhTxt + SetPoint +", ";
  DhTxt = DhTxt + StPtAvg.toPrecision(5) +", ";
  DhTxt = DhTxt + i +", ";
- DhTxt = DhTxt + ReadTime.valueOf();
+ DhTxt = DhTxt + ReadTime.valueOf() +", ";
  DhTxt = DhTxt + ReadTime + '\n';
  DhTxt = DhTxt.toString();
  console.log(DhTxt);
@@ -154,8 +154,8 @@ n.on('message', function(m) {
   //you can reset counter here
   if (i>8000){clearInterval(MyCndInt)}; //Write a routine to kill and respawn the process after x loops
   i++ ;
-console.log('Time between readings(milliseconds) '+ DelTime);
 /*
+console.log('Time between readings(milliseconds) '+ DelTime);
 console.log('Temperature control with SetPoint: '+ SetPoint);
 console.log(FeedBack.toPrecision(4)+' '+FdBkAvg.toPrecision(4)+' '+StPtAvg.toPrecision(4));
 console.log(PidErr.toPrecision(4)+' '+IntErr.toPrecision(4)+' '+DerErr.toPrecision(4)+' '+TotErr.toPrecision(4));
