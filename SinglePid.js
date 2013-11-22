@@ -26,7 +26,7 @@ var SPinit=71.94;//69.7;
 var tdel = 6000;
 // 1.5 min running average for Feedback and SetPoint.  About 15 readings
 var RavgDel = 15 * tdel; 
-
+var deadbnd = .1; // for the plant development.  Need a input routine/form.
 var SetPoint=SPinit, FeedBack=SPinit, FdBkAvg=SPinit;//SetPoint-1;//Temperature in F
 var StPtAvg=SetPoint;
 //Start at zero
@@ -148,8 +148,10 @@ console.log(Hum+' '+Temp+'    '+i);
 // Below is an attempt to create an audio alert to signal a manual control change
 // But it needs to toggle off when the change is complete and then set the new alarm flag
 //    for step two in the on/off process.
-if (TotErr > 0.5 ){console.log('\u0007')}; // It can be annoying, this rings the system bell.
-//if (TotErr < -0.5 ){console.log('\u0007')}; // After fixing replace the .5 with a var deadbnd
+if (TotErr > deadbnd AND turn=='off'){ // set turn = 'on' to silence bell
+    console.log('\u0007')}; // It can be annoying, this rings the system bell.
+if (TotErr < (-1.0 * deadbnd) AND turn=='on'){ // set turn = 'off' to silence bell
+    console.log('\u0007')}; // After fixing replace the .5 with a var deadbnd
 
 }    
 // function for PID calc
