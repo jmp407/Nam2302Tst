@@ -101,7 +101,7 @@ n.on('message', function(m) {
  t=32+1.8*DhObj.t;//.toPrecision(4)*9/5+32;
  FeedBack = t;
  DelTime=ReadTime-LastRdTime;
- LastRdTime =ReadTime;
+ LastRdTime = ReadTime;
  // 3 min running average for Feedback and SetPoint.
  FdBkAvg=FdBkAvg+(FeedBack-FdBkAvg)*(DelTime/RavgDel);
  StPtAvg=StPtAvg+(SetPoint-StPtAvg)*(DelTime/RavgDel);
@@ -121,7 +121,20 @@ n.on('message', function(m) {
  txTemp="The temperature is: " + t.toPrecision(4)+"</br>";
 //console.log(DhObj);
 //Need to format the h and tF and clean up the data file for spreadsheets and charting.
- DhTxt= Hum.toString()+", "+ Temp.toString()+", "+i.toString()+", "+ReadTime.valueOf() + '\n';
+ DhTxt= Hum.toPrecision(5) +", ";
+ DhTxt = DhTxt + HumAvg1m.toPrecision(5) +", ";
+ DhTxt = DhTxt + FeedBack.toPrecision(5) +", "; // for now this is only the temperature
+ DhTxt = DhTxt + FdBkAvg.toPrecision(5) +", ";
+ DhTxt = DhTxt + PidErr.toPrecision(5) +", ";
+ DhTxt = DhTxt + IntErr.toPrecision(5) +", ";
+ DhTxt = DhTxt + DerErr.toPrecision(5) +", ";
+ DhTxt = DhTxt + TotErr.toPrecision(5) +", ";
+ DhTxt = DhTxt + SetPoint +", ";
+ DhTxt = DhTxt + StPtAvg.toPrecision(5) +", ";
+ DhTxt = DhTxt + i +", ";
+ DhTxt = DhTxt + ReadTime.valueOf();
+ DhTxt = DhTxt + ReadTime + '\n';
+ DhTxt = DhTxt.toString();
  // Here is the file logging statements
  filAppd.appendFile('htdata.txt', DhTxt, function (err) {
   if (err) throw err;
