@@ -1,9 +1,30 @@
-//  A node.js script to read the humidity and temperature
-//  Need to add a calc to change Rh and temp to dew point or lbmH2O/lbmDryAir.
-//  Need to call PID script
-//  Added Date/Time to h and t Read
+//  A node.js script to handle the form to input setpoint and turnOff/On
+//  
+//  
+//  
 
 var http = require('http');
+
+http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/html'});
+  var Reld ="<script> setTimeout(function(){location.reload()}, 5000); </script>"
+
+  res.write(Reld);
+  //console.log(DhObj," ",i);
+  DhTxt = Date() + "</br>";
+  res.write(DhTxt);
+  res.write(txHum);
+  res.write(txHumAvg1m);
+  res.write(txHumAvg5m);
+  res.write(txHumAvg15m);
+  res.write(txTemp);
+  res.write(txTempAvg1m);
+  res.write(txTempAvg5m);
+  res.write(txTempAvg15m);
+//  res.end(JSON.stringify(DhObj));
+}).listen(8337, '10.0.0.4', Lcallback);
+function Lcallback(){console.log('Server running at http://10.0.0.4:8337/')}
+/*
 var cp = require('child_process');
 var am2302 = require('am2302');
 var tdel = 6000
@@ -101,3 +122,4 @@ http.createServer(function (req, res) {
 //  res.end(JSON.stringify(DhObj));
 }).listen(8337, '10.0.0.4', Lcallback);
 function Lcallback(){console.log('Server running at http://10.0.0.4:8337/')}
+*/
