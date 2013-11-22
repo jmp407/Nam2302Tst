@@ -7,13 +7,13 @@ var http = require('http');
 
 http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/html'});
-  var Reld ="<script> setTimeout(function(){location.reload()}, 5000); </script>"
+//  var Reld ="<script> setTimeout(function(){location.reload()}, 5000); </script>"
 
-  res.write(Reld);
+//  res.write(Reld);
   //console.log(DhObj," ",i);
   DhTxt = Date() + "</br>";
   res.write(DhTxt);
-  res.write(txHum);
+/*  res.write(txHum);
   res.write(txHumAvg1m);
   res.write(txHumAvg5m);
   res.write(txHumAvg15m);
@@ -21,6 +21,7 @@ http.createServer(function (req, res) {
   res.write(txTempAvg1m);
   res.write(txTempAvg5m);
   res.write(txTempAvg15m);
+*/
 //  res.end(JSON.stringify(DhObj));
 }).listen(8337, '10.0.0.4', Lcallback);
 function Lcallback(){console.log('Server running at http://10.0.0.4:8337/')}
