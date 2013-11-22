@@ -13,6 +13,7 @@ console.log(req);
   //console.log(DhObj," ",i);
   DhTxt = Date() + "</br>";
   res.write(DhTxt);
+  res.write(req);
 /*  res.write(txHum);
   res.write(txHumAvg1m);
   res.write(txHumAvg5m);
