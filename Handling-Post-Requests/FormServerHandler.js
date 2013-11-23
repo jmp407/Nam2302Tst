@@ -1,24 +1,19 @@
 var http = require('http');
 var splitter = require('./splitter.js');
- 
-var postHTML =
 
+var prefHTML =
   '<html><head><title>Post Set Point Example</title></head>' +
   '<body>' +
-/*
-  '<form method="post">' +
-  'Your Fist Name: <input name="first_name"><br>' +
-  'Your Last Name: <input name="last_name"><br>' +
-  '<input type="submit">' +
-  '</form>' +
-*/
 //  '<form action="http://10.0.0.4:8337/" method="POST">' + Don't need the action....
-  '<form method="POST">' +
+  '<form method="POST">';
+var inptHTML = 
   'Set Point: <input type="text" name="SetPoint" value=70.0><br>' +
-  'Plant on/off: <input type="text" name="PonOff" value="off"><br>' +
+  'Plant on/off: <input type="text" name="PonOff" value="off"><br>';
+var postHTML = 
   '<input type="submit" value="Send">' +
   '</form>' +
   '</body></html>';
+var pageHTML = prefHTML + inptHTML + postHTML ;
 
  
 http.createServer(function (req, res) {
@@ -37,13 +32,13 @@ http.createServer(function (req, res) {
          console.log("input2 = " + hash["PonOff"]);
  
          res.writeHead(200);
-         res.write(postHTML);
+         res.write(pageHTML);
          res.write('The set point and relay position is ' + hash["SetPoint"] + ', ' + hash["PonOff"] + '.');
          res.end('Thats all folks');
          return;
     }
  
     res.writeHead(200);
-    res.end(postHTML);
+    res.end(pageHTML);
   });
 }).listen(8337);
