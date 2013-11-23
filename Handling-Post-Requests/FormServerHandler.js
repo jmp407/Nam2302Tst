@@ -33,6 +33,8 @@ http.createServer(function (req, res) {
          SetPoint = hash["SetPoint"];
          console.log("input2 = " + hash["PonOff"]);
          turn = hash["PonOff"];
+//  Just put this code in SinglePID         
+//         exports.hashVals=function()
          
          inptHTML = 
   'Set Point: <input type="text" name="SetPoint" value=' + hash["SetPoint"] + '><br>' +
