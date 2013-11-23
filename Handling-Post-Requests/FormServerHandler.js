@@ -1,6 +1,7 @@
 var http = require('http');
 var splitter = require('./splitter.js');
-
+var SetPoint = 70;
+var turn = 'off';
 var prefHTML =
   '<html><head><title>Post Set Point Example</title></head>' +
   '<body>' +
@@ -29,7 +30,9 @@ http.createServer(function (req, res) {
         var hash = splitter.formValues(body);
  
          console.log("input1 = " + hash["SetPoint"]);
+         SetPoint = hash["SetPoint"];
          console.log("input2 = " + hash["PonOff"]);
+         turn = hash["PonOff"];
          
          inptHTML = 
   'Set Point: <input type="text" name="SetPoint" value=' + hash["SetPoint"] + '><br>' +
@@ -37,7 +40,7 @@ http.createServer(function (req, res) {
         pageHTML = prefHTML + inptHTML + postHTML ;
          res.writeHead(200);
          res.write(pageHTML);
-         res.write('The set point and relay position is ' + hash["SetPoint"] + ', ' + hash["PonOff"] + '.');
+         res.write('The set point is ' + hash["SetPoint"] + ' and relay position is ' + hash["PonOff"] + '.\n');
          res.end('Thats all folks');
          return;
     }
