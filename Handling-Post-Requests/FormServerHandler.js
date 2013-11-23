@@ -2,7 +2,7 @@ var http = require('http');
 var splitter = require('./splitter.js');
  
 var postHTML =
-  '<html><head><title>Post SetPoint Example</title></head>' +
+  '<html><head><title>Post Example</title></head>' +
   '<body>' +
   '<form method="post">' +
   'Your Fist Name: <input name="first_name"><br>' +
