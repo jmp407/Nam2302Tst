@@ -1,3 +1,5 @@
+// What does the body look like when posted to this code?
+// How do I get the radio button out of this.
 exports.formValues = function(data){
     var splits = data.split('&');
     var hash = [];
