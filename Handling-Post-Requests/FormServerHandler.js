@@ -30,7 +30,11 @@ http.createServer(function (req, res) {
  
          console.log("input1 = " + hash["SetPoint"]);
          console.log("input2 = " + hash["PonOff"]);
- 
+         
+         inptHTML = 
+  'Set Point: <input type="text" name="SetPoint" value=' + hash["SetPoint"] + '><br>' +
+  'Plant on/off: <input type="text" name="PonOff" value=' + hash["PonOff"] + '><br>';
+        pageHTML = prefHTML + inptHTML + postHTML ;
          res.writeHead(200);
          res.write(pageHTML);
          res.write('The set point and relay position is ' + hash["SetPoint"] + ', ' + hash["PonOff"] + '.');
