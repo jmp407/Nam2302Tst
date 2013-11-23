@@ -33,13 +33,19 @@ var prefHTML =
 //  '<form action="http://10.0.0.4:8337/" method="POST">' + Don't need the action....
   '<form method="POST">';
 var inptHTML = 
-  'Set Point: <input type="text" name="SetPoint" value=70.0><br>' +
-  'Plant on/off: <input type="text" name="PonOff" value="off"><br>';
+  'Set Point: <input type="text" name="SetPoint" value=70.0><br>';
+var formTgleHTML =
+    'Plant on/off: <input type="text" name="PonOff" value="off"><br>';
+    '<form id="frmRad" name="anchRad">' + 
+    '<input type="radio" name="turn" value="on" id="turn_is_on"> On<br>' + 
+    '<input type="radio" name="turn" value = "off" id="turn_is_off" checked> Off<br></form>' ;
+    <button onclick="myFrmRadio(document.anchRad.turn[0].checked)">Try it</button>
+
 var postHTML = 
   '<input type="submit" value="Send">' +
   '</form>' +
   '</body></html>';
-var pageHTML = prefHTML + inptHTML + postHTML ;
+var pageHTML = prefHTML + inptHTML + formTgleHTML + postHTML ;
 
  
 http.createServer(function (req, res) {
@@ -62,9 +68,10 @@ http.createServer(function (req, res) {
 //         exports.hashVals=function()
          
          inptHTML = 
-  'Set Point: <input type="text" name="SetPoint" value=' + hash["SetPoint"] + '><br>' +
-  'Plant on/off: <input type="text" name="PonOff" value=' + hash["PonOff"] + '><br>';
-        pageHTML = prefHTML + inptHTML + postHTML ;
+  'Set Point: <input type="text" name="SetPoint" value=' + hash["SetPoint"] + '><br>';
+//  'Plant on/off: <input type="text" name="PonOff" value=' + hash["PonOff"] + '><br>';
+
+        pageHTML = prefHTML + inptHTML + formTgleHTML + postHTML ;
          res.writeHead(200);
          res.write(pageHTML);
          res.write('The set point is ' + hash["SetPoint"] + ' and relay position is ' + hash["PonOff"] + '.\n');
