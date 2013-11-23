@@ -1,6 +1,6 @@
 //
 //Single PID
-
+/*  Replace all of this with the new code
 // Input the setpoint, just hit enter.  Then hurry.
 var filAppd = require('fs');
 var readline = require('readline'),
@@ -19,6 +19,63 @@ rl.on('close', function() {
   console.log('Have a great day! ');
   process.exit(0);
 });
+*/
+
+var http = require('http');
+var splitter = require('./Handling-Post-Requests/splitter.js');
+var SetPoint = 70;
+var turn = 'off';
+var prefHTML =
+  '<html><head><title>Post Set Point Example</title></head>' +
+  '<body>' +
+//  '<form action="http://10.0.0.4:8337/" method="POST">' + Don't need the action....
+  '<form method="POST">';
+var inptHTML = 
+  'Set Point: <input type="text" name="SetPoint" value=70.0><br>' +
+  'Plant on/off: <input type="text" name="PonOff" value="off"><br>';
+var postHTML = 
+  '<input type="submit" value="Send">' +
+  '</form>' +
+  '</body></html>';
+var pageHTML = prefHTML + inptHTML + postHTML ;
+
+ 
+http.createServer(function (req, res) {
+  var body = "";
+  req.on('data', function (chunk) {
+    body += chunk;
+  });
+  req.on('end', function () {
+    console.log('POSTed: ' + body);
+ 
+    if (body != '')
+    {
+        var hash = splitter.formValues(body);
+ 
+         console.log("input1 = " + hash["SetPoint"]);
+         SetPoint = hash["SetPoint"];
+         console.log("input2 = " + hash["PonOff"]);
+         turn = hash["PonOff"];
+//  Just put this code in SinglePID         
+//         exports.hashVals=function()
+         
+         inptHTML = 
+  'Set Point: <input type="text" name="SetPoint" value=' + hash["SetPoint"] + '><br>' +
+  'Plant on/off: <input type="text" name="PonOff" value=' + hash["PonOff"] + '><br>';
+        pageHTML = prefHTML + inptHTML + postHTML ;
+         res.writeHead(200);
+         res.write(pageHTML);
+         res.write('The set point is ' + hash["SetPoint"] + ' and relay position is ' + hash["PonOff"] + '.\n');
+         res.end('Thats all folks');
+         return;
+    }
+ 
+    res.writeHead(200);
+    res.end(pageHTML);
+  });
+}).listen(8337);
+
+
 //Init
 var ReadTime= new Date(),LastRdTime =ReadTime, DelTime=ReadTime-LastRdTime;
 var SPinit=71.94;//69.7;
@@ -47,6 +104,8 @@ var TotErr=(Kp * PidErr) + IntErr + DerErr;//Simple sum of errors for this contr
 //  Added Date/Time to h and t Read
 // The next three lines could use some work
 var http = require('http'); // May not need this for the socket communication
+
+
 var cp = require('child_process'); // This might allow coder to call a js as root
 var am2302 = require('am2302'); // Then this would be a in another js
 //var tdel = 6000;
