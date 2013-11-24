@@ -8,7 +8,7 @@ var prefHTML =
 //  '<form action="http://10.0.0.4:8337/" method="POST">' + Don't need the action....
   '<form method="POST" id="frmRad" name="anchRad">' +
   '<input type="radio" name="turn" value="on"  id="turn_is_on"> On<br>' +
-  '<input type="radio" name="turn" value = "off" id="turn_is_off" checked> Off<br></form>'
+  '<input type="radio" name="turn" value = "off" id="turn_is_off" checked> Off<br>'
 var inptHTML = 
   'Set Point: <input type="text" name="SetPoint" value=70.0><br>' +
   'Plant on/off: <input type="text" name="PonOff" value="off"><br>';
