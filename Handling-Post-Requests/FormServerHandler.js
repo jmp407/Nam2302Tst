@@ -1,7 +1,7 @@
 var http = require('http');
 var splitter = require('./splitter.js');
 var SetPoint = 70;
-var turn = 'off';
+var turnVal = "";
 var prefHTML =
   '<html><head><title>Post Set Point Example</title></head>' +
   '<body>' +
@@ -34,7 +34,9 @@ http.createServer(function (req, res) {
          console.log("input1 = " + hash["SetPoint"]);
          SetPoint = hash["SetPoint"];
          console.log("input2 = " + hash["PonOff"]);
-         turn = hash["PonOff"];
+         turnVal = hash["turn"];
+         console.log('Radio is ' + turnVal)
+         
 //  Just put this code in SinglePID         
 //         exports.hashVals=function()
          
