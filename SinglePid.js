@@ -67,10 +67,9 @@ http.createServer(function (req, res) {
 //         exports.hashVals=function()
          
          inptHTML = 
-  'Set Point: <input type="text" name="SetPoint" value=' + hash["SetPoint"] + '><br>';
-//  'Plant on/off: <input type="text" name="PonOff" value=' + hash["PonOff"] + '><br>';
-
-        pageHTML = prefHTML + inptHTML + formTgleHTML + postHTML ;
+  'Set Point: <input type="text" name="SetPoint" value=' + hash["SetPoint"] + '><br>' +
+  'Plant on/off: <input type="text" name="PonOff" value=' + hash["PonOff"] + '><br>';
+        pageHTML = prefHTML + inptHTML + postHTML ;
          res.writeHead(200);
          res.write(pageHTML);
          res.write('The set point is ' + hash["SetPoint"] + ' and relay position is ' + hash["turnVal"] + '.\n');
