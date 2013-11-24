@@ -26,26 +26,22 @@ rl.on('close', function() {
 var http = require('http');
 var splitter = require('./Handling-Post-Requests/splitter.js');
 var SetPoint = 70;
-var turn = 'off';
+
+var turnVal = "off"; // start up with the plant off
 var prefHTML =
   '<html><head><title>Post Set Point Example</title></head>' +
-  '<body>' +
-//  '<form action="http://10.0.0.4:8337/" method="POST">' + Don't need the action....
-  '<form method="POST">';
+  '<body>Post Set Point Example' +
+  '<form method="POST" id="frmRad" name="anchRad">' +
+  '<input type="radio" name="turn" value="on"  id="turn_is_on"> On<br>' +
+  '<input type="radio" name="turn" value = "off" id="turn_is_off" checked> Off<br>';
 var inptHTML = 
-  'Set Point: <input type="text" name="SetPoint" value=70.0><br>';
-var formTgleHTML =
-    'Plant on/off: <input type="text" name="PonOff" value="off"><br>';
-    '<form id="frmRad" name="anchRad">' + 
-    '<input type="radio" name="turn" value="on" id="turn_is_on"> On<br>' + 
-    '<input type="radio" name="turn" value = "off" id="turn_is_off" checked> Off<br></form>' ;
-    <button onclick="myFrmRadio(document.anchRad.turn[0].checked)">Try it</button>
-
+  'Set Point: <input type="text" name="SetPoint" value=70.0><br>' +
+  'Plant on/off: <input type="text" name="PonOff" value="off"><br>';
 var postHTML = 
   '<input type="submit" value="Send">' +
   '</form>' +
   '</body></html>';
-var pageHTML = prefHTML + inptHTML + formTgleHTML + postHTML ;
+var pageHTML = prefHTML + inptHTML + postHTML ;
 
  
 http.createServer(function (req, res) {
@@ -63,7 +59,10 @@ http.createServer(function (req, res) {
          console.log("input1 = " + hash["SetPoint"]);
          SetPoint = hash["SetPoint"];
          console.log("input2 = " + hash["PonOff"]);
-         turn = hash["PonOff"];
+//         turn = hash["PonOff"];
+         turnVal = hash["turn"];
+         console.log('Radio is ' + turnVal)
+
 //  Just put this code in SinglePID         
 //         exports.hashVals=function()
          
@@ -74,7 +73,7 @@ http.createServer(function (req, res) {
         pageHTML = prefHTML + inptHTML + formTgleHTML + postHTML ;
          res.writeHead(200);
          res.write(pageHTML);
-         res.write('The set point is ' + hash["SetPoint"] + ' and relay position is ' + hash["PonOff"] + '.\n');
+         res.write('The set point is ' + hash["SetPoint"] + ' and relay position is ' + hash["turnVal"] + '.\n');
          res.end('Thats all folks');
          return;
     }
@@ -93,7 +92,7 @@ var tdel = 6000;
 // 1.5 min running average for Feedback and SetPoint.  About 15 readings
 var RavgDel = 15 * tdel; 
 var deadbnd = .1; // for the plant development.  Need a input routine/form.
-var turn = 'off'; // start up with the plant off
+
 var SetPoint=SPinit, FeedBack=SPinit, FdBkAvg=SPinit;//SetPoint-1;//Temperature in F
 var StPtAvg=SetPoint;
 //Start at zero
@@ -233,9 +232,9 @@ console.log(Hum+' '+Temp+'    '+i);
 // Below is an attempt to create an audio alert to signal a manual control change
 // But it needs to toggle off when the change is complete and then set the new alarm flag
 //    for step two in the on/off process.
-if (TotErr > deadbnd && turn=='off'){ // set turn = 'on' to silence bell
+if (TotErr > deadbnd && turnVal=='off'){ // set turn = 'on' to silence bell
     console.log('\u0007')}; // It can be annoying, this rings the system bell.
-if (TotErr < (-1.0 * deadbnd) && turn=='on'){ // set turn = 'off' to silence bell
+if (TotErr < (-1.0 * deadbnd) && turnVal=='on'){ // set turn = 'off' to silence bell
     console.log('\u0007')}; // After fixing replace the .5 with a var deadbnd
 
 }    
