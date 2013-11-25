@@ -13,7 +13,13 @@ Script descriptions:
   test4.js //tried this in coder but kept hanging, but it does read
     the DHT22 when node is run as root on the console.
 
+Useful Raspberry Pi console files:
+  /proc/meminfo
+  history file?
+Useful Raspberry Pi console clues:
+  > You are in a nodejs instance (cp? correct phrasing?)
 Useful Raspberry Pi console commands:
+  history
   # cat /proc/meminfo
     MemTotal:         234968 kB
     MemFree:           56840 kB
