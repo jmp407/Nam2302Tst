@@ -76,7 +76,7 @@ http.createServer(function (req, res) {
         pageHTML = prefHTML + inptHTML + postHTML ;
          res.writeHead(200);
          res.write(pageHTML);
-         res.write('The set point is ' + hash["SetPoint"] + ' and relay position is ' + hash["turnVal"] + '.\n');
+         res.write('The set point is ' + hash["SetPoint"] + ' and relay position is ' + hash["turn"] + '.\n');
          res.end('Thats all folks');
          return;
     }
@@ -108,7 +108,7 @@ var IntTimeStep = 60000;// 1 min in ms
 var DerErr=PidErr;//use the 5 min avg for Der
 var Dr = 0.2;// minutes
 var TotErr=(Kp * PidErr) + IntErr + DerErr;//Simple sum of errors for this controller
-
+// May need to fix the above equation
 //  A node.js script to read the humidity and temperature
 //  Need to add a calc to change Rh and temp to dew point or lbmH2O/lbmDryAir.
 //  Need to call PID script
