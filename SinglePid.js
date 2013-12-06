@@ -36,7 +36,7 @@ var prefHTML =
   '<input type="radio" name="turn" value = "off" id="turn_is_off" checked> Off<br>';
 var inptHTML = 
   'Set Point: <input type="text" name="SetPoint" value=70.0><br>' +
-  'Dead Band: <input type="text" name="DeadBnd" value = 0.1><br>' +
+  'Dead Band: <input type="text" name="DeadBnd" value=0.1><br>' +
   'Plant on/off: <input type="text" name="PonOff" value="off"><br>';
 var postHTML = 
   '<input type="submit" value="Send">' +
@@ -61,11 +61,12 @@ http.createServer(function (req, res) {
          SetPoint = hash["SetPoint"];
          console.log("input2 = " + hash["PonOff"]);
 //         turn = hash["PonOff"];
-          deadbnd = hash["DeadBnd"]
+          deadbnd = hash["DeadBnd"];
+          console.log('DeadBnd is ' + deadbnd);
          turnVal = hash["turn"];
-         console.log('Radio is ' + turnVal)
+         console.log('Radio is ' + turnVal);
 
-//  Just put this code in SinglePID         
+//  Just put this code in SinglePID        
 //         exports.hashVals=function()
          
          inptHTML = 
