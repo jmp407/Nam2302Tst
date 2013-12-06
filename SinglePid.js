@@ -36,6 +36,7 @@ var prefHTML =
   '<input type="radio" name="turn" value = "off" id="turn_is_off" checked> Off<br>';
 var inptHTML = 
   'Set Point: <input type="text" name="SetPoint" value=70.0><br>' +
+  'Dead Band: <input type="text" name="DeadBnd" value = 0.1><br>' +
   'Plant on/off: <input type="text" name="PonOff" value="off"><br>';
 var postHTML = 
   '<input type="submit" value="Send">' +
@@ -60,6 +61,7 @@ http.createServer(function (req, res) {
          SetPoint = hash["SetPoint"];
          console.log("input2 = " + hash["PonOff"]);
 //         turn = hash["PonOff"];
+          deadbnd = hash["DeadBnd"]
          turnVal = hash["turn"];
          console.log('Radio is ' + turnVal)
 
@@ -68,6 +70,7 @@ http.createServer(function (req, res) {
          
          inptHTML = 
   'Set Point: <input type="text" name="SetPoint" value=' + hash["SetPoint"] + '><br>' +
+  'Dead Band: <input type="text" name="DeadBnd" value = ' + deadbnd + '><br>' +
   'Plant on/off: <input type="text" name="PonOff" value=' + hash["PonOff"] + '><br>';
         pageHTML = prefHTML + inptHTML + postHTML ;
          res.writeHead(200);
@@ -242,15 +245,15 @@ function PID () {
     LstPidErr = PidErr;
 //  PidErr =SetPoint - FeedBack;
     PidErr = StPtAvg - FdBkAvg;
-    if (PidErr > 1) { PidErr = 1};
-    if (PidErr < -1){ PidErr = -1};
+    if (PidErr > 1*deadbnd) { PidErr = 1*deadbnd};
+    if (PidErr < -1*deadbnd){ PidErr = -1*deadbnd};
     IntErr = IntErr +((PidErr+LstPidErr)/2)*DelTime/IntTimeStep;// one to start
-    if (IntErr > 1) { IntErr = 1};
-    if (IntErr < -1)  { IntErr = -1};
+    if (IntErr > 1*deadbnd) { IntErr = 1*deadbnd};
+    if (IntErr < -1*deadbnd)  { IntErr = -1*deadbnd};
 // may want to take a running avg of DerErr
     DerErr = (PidErr-LstPidErr)*IntTimeStep/DelTime;
-    if (DerErr > 1)  { DerErr = 1};
-    if (DerErr < -1) { DerErr = -1};
+    if (DerErr > 1*deadbnd)  { DerErr = 1*deadbnd};
+    if (DerErr < -1*deadbnd) { DerErr = -1*deadbnd};
 // Sum the individual items for this controller
     TotErr = (Kp * PidErr) + Ir*IntErr + Dr*DerErr;
     if (TotErr > 1)  { TotErr = 1};
